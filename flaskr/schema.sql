@@ -1,0 +1,11 @@
+
+DROP TABLE IF EXISTS user;
+
+CREATE TABLE user (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  fullname VARCHAR(80) NOT NULL,        
+  username VARCHAR(80) UNIQUE NOT NULL,
+  email VARCHAR(120) UNIQUE NOT NULL,
+  password VARCHAR(80) NOT NULL,
+  terms_and_conditions BOOLEAN NOT NULL
+);
