@@ -1,0 +1,31 @@
+[{
+        "currency_name": "USD:",
+        "selling_rate": 2340,
+        "buying_rate": 2322
+    },
+    {
+        "currency_name": "EUR:",
+        "selling_rate": 2772,
+        "buying_rate": 2333
+    },
+    {
+        "currency_name": "ZAR:",
+        "selling_rate": 161,
+        "buying_rate": 138
+    },
+    {
+        "currency_name": "KES:",
+        "selling_rate": 23,
+        "buying_rate": 20
+    },
+    {
+        "currency_name": "GBP:",
+        "selling_rate": 3239,
+        "buying_rate": 2764
+    },
+    {
+        "currency_name": "UGX:",
+        "selling_rate": 1,
+        "buying_rate": 1
+    }
+]
