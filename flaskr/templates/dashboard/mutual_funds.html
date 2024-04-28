@@ -8,20 +8,9 @@
         <div class="row">
             
                 <div class="col-8  ml-4">
-                    <select class="form-select" aria-label="select bank" name="bank_name">
-                        <option selected>Choose a Bank | Chagua Benki</option>
-                        <option value="amana">Amana Bank</option>
-                        <option value="azania">Azania Bank</option>
-                        <option value="baroda">Baroda Bank</option>
-                        <option value="boi">Bank Of India ( BOI )</option>
-                        <option value="bot">Bank Of Tanzania ( BOT )</option>
-                        <option value="dasheng">Dasheng Bank</option>
-                        <option value="dcb">DCB Bank</option>
-                        <option value="exim">EXIM Bank</option>
-                        <option value="habib">Habib Bank</option>
-                        <option value="icb">ICB Bank</option>
-                        <option value="mkombozi">Mkombozi Bank</option>
-                        <option value="NMB Bank">National Microfinance Bank ( NMB ) </option>
+                    <select class="form-select" aria-label="select bank" name="fund_name">
+                        <option selected>Choose a Mutual Fund | Chagua Mfuko wa Uwekezaji</option>
+                        <option value="utt_amis">UTT AMIS</option>
                       </select>
                 </div>
             <div class="col-4 ">
@@ -40,18 +29,24 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Currency</th>
-                    <th scope="col">Selling</th>
-                    <th scope="col">Buying</th>
+                    <th scope="col">Fund Name</th>
+                    <th scope="col">Net Asset Value (Tsh)</th>
+                    <th scope="col">Outstanding Number of Units (Tsh)</th>
+                    <th scope="col">Net Asset Value Per Unit (Tsh)</th>
+                    <th scope="col">Sale Price Per Unit (Tsh)</th>
+                    <th scope="col">Sale Price Per Unit (Tsh)</th>
                 </tr>
             </thead>
             <tbody>
-                {% for currency in bank_forex_data %}
+                {% for fund in fund_data %}
                 <tr>
                     <th scope="row">{{ loop.index }}</th>
-                    <td>{{ currency.currency }}</td>
-                    <td>{{ currency.selling }}</td>
-                    <td>{{ currency.buying }}</td>
+                    <td>{{ fund.fund_name }}</td>
+                    <td>{{ fund.data["Net Asset Value (Tsh)"] }}</td>
+                    <td>{{ fund.data["Outstanding Number of Units (Tsh)"] }}</td>
+                    <td>{{ fund.data["Net Asset Value Per Unit (Tsh)"] }}</td>
+                    <td>{{ fund.data["Sale Price Per Unit (Tsh)"] }}</td>
+                    <td>{{ fund.data["Purchase Price Per Unit (Tsh)"] }}</td>
                 </tr>
                 {% endfor %}
         </table>

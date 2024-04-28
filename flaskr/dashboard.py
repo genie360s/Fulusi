@@ -19,7 +19,7 @@ def dashboard():
         if not bank_name:
             error = 'Bank name is required.'
 
-        api_url = f"https://a68f-197-250-198-20.ngrok-free.app/findaily/api/{bank_name}"
+        api_url = f"http://127.0.0.1:5000/findaily/api/{bank_name}"
         if  error is None:
             try :
                 response = requests.get(api_url)
@@ -52,7 +52,8 @@ def mutual_funds():
         if not fund_name:
             error = 'Fund name is required.'
 
-        api_url = f"https://a68f-197-250-198-20.ngrok-free.app/findaily/api/{fund_name}"
+        api_url = f"http://127.0.0.1:5000/findaily/api/{fund_name}"
+
         if  error is None:
             try :
                 response = requests.get(api_url)
@@ -68,7 +69,6 @@ def mutual_funds():
             else:
                 # Handle other errors
                 return render_template('error.html', message="Failed to fetch data from the API")
-            
+        
         flash(error)
-
     return render_template('dashboard/mutual_funds.html')
