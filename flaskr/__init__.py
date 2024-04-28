@@ -40,6 +40,10 @@ def create_app(test_config=None):
     #Import and register the dashboard blueprint
     from . import dashboard
     app.register_blueprint(dashboard.bp)
-    app.add_url_rule('/dashboard', endpoint='dashboard')
+
+    #Import and register the api blueprint
+    from . import api
+    app.register_blueprint(api.bp)
+
     
     return app
