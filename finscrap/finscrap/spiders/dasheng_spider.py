@@ -27,7 +27,7 @@ class DangshengSpider(scrapy.Spider):
 
         for note_type, selling_price, buying_price in zip(note_types, selling_prices, buying_prices):
             yield {
-                'note_type': note_type,
-                'selling_price': selling_price,
-                'buying_price': buying_price
+                'currency': note_type,
+                'buying': float(buying_price),
+                'selling': float(selling_price), 
             }

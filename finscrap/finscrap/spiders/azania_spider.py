@@ -18,7 +18,7 @@ class AzaniaSpider(scrapy.Spider):
 
         for exchange_rate_data in exchange_rate_datas:
             yield {
-                'currency_name': exchange_rate_data[0],
+                'currency': exchange_rate_data[0],
                 'buying': float(exchange_rate_data[1].strip().replace(',', '')),
                 'selling': float(exchange_rate_data[2].strip().replace(',', '')),
             }

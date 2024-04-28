@@ -20,7 +20,7 @@ class NmbSpider(scrapy.Spider):
         for exchange_rate_data in exchange_rate_datas:
             yield {
                 'currency': exchange_rate_data[0].strip() if exchange_rate_data[0] else None,
-                'buying_rate': float(exchange_rate_data[1].strip().replace(',', '') if exchange_rate_data[1] else None),
-                'selling_rate': float(exchange_rate_data[2].strip().replace(',', '') if exchange_rate_data[2] else None),
+                'buying': float(exchange_rate_data[1].strip().replace(',', '') if exchange_rate_data[1] else None),
+                'selling': float(exchange_rate_data[2].strip().replace(',', '') if exchange_rate_data[2] else None),
             }
         

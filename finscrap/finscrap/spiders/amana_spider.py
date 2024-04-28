@@ -27,8 +27,8 @@ class AmanaSpider(scrapy.Spider):
 
         for currency_name, buying_price, selling_price in zip(currency_names, buying_prices, selling_prices):
             yield {
-                'currency_name': currency_name,
-                'buying_price': buying_price,
-                'selling_price': selling_price
+                'currency': currency_name,
+                'buying': buying_price,
+                'selling': selling_price
             }
           

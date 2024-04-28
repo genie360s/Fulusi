@@ -29,19 +29,10 @@ class UttAmis(scrapy.Spider):
                     'fund_date': fund_date.strip() if fund_date else None,
                     'fund_description': fund_description.strip() if fund_description else None,
                     'data': {
-                        "Net Asset Value (Tsh)" : data_values[0].strip() if data_values else None,
-                        "Outstanding Number of Units (Tsh)" : data_values[1].strip() if len(data_values) > 1 else None,
-                        "Net Asset Value Per Unit (Tsh)" : data_values[2].strip() if len(data_values) > 2 else None,
-                        "Sale Price Per Unit (Tsh)" : data_values[3].strip() if len(data_values) > 3 else None,
-                        "Purchase Price Per Unit (Tsh)" : data_values[4].strip() if len(data_values) > 4 else None,
+                        "Net Asset Value (Tsh)" : data_values[0].strip().replace(",","") if data_values[0] else None,
+                        "Outstanding Number of Units (Tsh)" : data_values[1].strip() if data_values[1] else None,
+                        "Net Asset Value Per Unit (Tsh)" : data_values[2].strip() if data_values[2] else None,
+                        "Sale Price Per Unit (Tsh)" : data_values[3].strip() if data_values[3] else None,
+                        "Purchase Price Per Unit (Tsh)" : data_values[4].strip() if data_values[4] else None,
                     }
                 }
-
-    # def parse(self, response):
-    #     fund_descriptions = response.css('div.our-product').getall()
-    #     for fund_description in fund_descriptions:
-    #         fund_description_selector = Selector(text=fund_description)
-    #         fund_description = fund_description_selector.css('p.description::text').getall()
-    #         yield {
-    #             'fund_description': fund_description
-    #         }

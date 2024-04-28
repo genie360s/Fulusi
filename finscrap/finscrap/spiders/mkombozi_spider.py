@@ -31,8 +31,8 @@ class MkomboziSpider(scrapy.Spider):
         for currency, buying_rate, selling_rate in zip(currencies, buying_rates, selling_rates):
             yield {
                 'currency': currency.strip() if currency else None,
-                'buying': buying_rate if buying_rate else None,
-                'selling': selling_rate if selling_rate else None,
+                'buying': float(buying_rate if buying_rate else None),
+                'selling':float(selling_rate if selling_rate else None),
             }
 
         

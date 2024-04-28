@@ -14,7 +14,8 @@ class DcbSpider(scrapy.Spider):
             selling_rate = int(rates[0].strip().replace(",", ""))
             buying_rate = int(rates[1].strip().replace(",", ""))
             yield {
-                'currency_name': currency_names.pop(0).strip() if currency_names else None,
-                'selling_rate': selling_rate,
-                'buying_rate': buying_rate
+                'currency': currency_names.pop(0).strip() if currency_names else None,
+                'buying': float(buying_rate),
+                'selling': float(selling_rate),
+                
             }

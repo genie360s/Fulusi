@@ -1,0 +1,12 @@
+[
+{"currency_name": "BIF", "buying_rate": 0.8917, "selling_rate": 0.9},
+{"currency_name": "EUR", "buying_rate": 2746.9022, "selling_rate": 2774.6306},
+{"currency_name": "GBP", "buying_rate": 3205.0617, "selling_rate": 3237.3717},
+{"currency_name": "JPY", "buying_rate": 16.4996, "selling_rate": 16.6614},
+{"currency_name": "KES", "buying_rate": 19.1654, "selling_rate": 19.2136},
+{"currency_name": "RWF", "buying_rate": 1.9773, "selling_rate": 2.0235},
+{"currency_name": "UGX", "buying_rate": 0.6486, "selling_rate": 0.6806},
+{"currency_name": "USD", "buying_rate": 2568.1584, "selling_rate": 2593.84},
+{"currency_name": "GOLD", "buying_rate": 5971661.7196, "selling_rate": 6032675.2568},
+{"currency_name": "ZAR", "buying_rate": 134.9312, "selling_rate": 136.249}
+]

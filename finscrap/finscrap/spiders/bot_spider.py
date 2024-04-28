@@ -20,7 +20,7 @@ class BotSpider(scrapy.Spider):
         
         for data in exchange_rate_datas:
             yield {
-                'currency_name': data[0].strip() if data else None,
-                'buying_rate': float(data[1].strip()) if data else None,
-                'selling_rate': float(data[2].strip()) if data else None,
+                'currency': data[0].strip() if data else None,
+                'buying': float(data[1].strip()) if data else None,
+                'selling': float(data[2].strip()) if data else None,
             }

@@ -29,7 +29,7 @@ class TcbSpider(scrapy.Spider):
 
         for curreny_name, data in zip(currency_names, exchange_rate_datas[1:]):
             yield {
-                'currency_name': curreny_name.strip() if curreny_name else None,
-                'buying_rate': float(data[0].strip().replace(',','') if data[0] else None),
-                'selling_rate': float(data[1].strip().replace(',', '') if data[1] else None),
+                'currency': curreny_name.strip() if curreny_name else None,
+                'buying': float(data[0].strip().replace(',','') if data[0] else None),
+                'selling': float(data[1].strip().replace(',', '') if data[1] else None),
             }
