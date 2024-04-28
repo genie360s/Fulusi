@@ -10,8 +10,8 @@ body {
 }
 
 main {
-    margin-left:20%;
-    margin-right:20%;
+    margin-left:16vw;
+    margin-right:16vw;
 }
 /*  <uniquifier>: Use a unique and descriptive class name
          <weight>: Use a value from 100 to 900 */
