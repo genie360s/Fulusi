@@ -1,73 +1,8 @@
-[{
-        "fund_name": "Umoja Fund",
-        "fund_date": "Wednesday, 24th of April 2024",
-        "fund_description": "It is an open-ended balance fund that invests in a diversified portfolio which makes this fund best suited for a medium risk profile.",
-        "data": {
-            "Net Asset Value (Tsh)": "351, 197, 786, 784.6440",
-            "Outstanding Number of Units (Tsh)": "345, 523, 230.4691",
-            "Net Asset Value Per Unit (Tsh)": "1,016.4231",
-            "Sale Price Per Unit (Tsh)": "1,016.4231",
-            "Purchase Price Per Unit (Tsh)": "1,006.2589"
-        }
-    },
-    {
-        "fund_name": "Wekeza Maisha Fund",
-        "fund_date": "Wednesday, 24th of April 2024",
-        "fund_description": "The Wekeza Maisha/Invest life Unit Trust is the first investment cum insurance scheme to be established by UTT AMIS in the country.",
-        "data": {
-            "Net Asset Value (Tsh)": "13, 869, 096, 457.5234",
-            "Outstanding Number of Units (Tsh)": "15, 588, 202.2294",
-            "Net Asset Value Per Unit (Tsh)": "889.7175",
-            "Sale Price Per Unit (Tsh)": "889.7175",
-            "Purchase Price Per Unit (Tsh)": "871.9232"
-        }
-    },
-    {
-        "fund_name": "Watoto Fund",
-        "fund_date": "Wednesday, 24th of April 2024",
-        "fund_description": "A child benefits an open-end balanced fund, which seeks to generate long-term capital appreciation.",
-        "data": {
-            "Net Asset Value (Tsh)": "17, 477, 574, 453.8411",
-            "Outstanding Number of Units (Tsh)": "26, 744, 182.8497",
-            "Net Asset Value Per Unit (Tsh)": "653.5094",
-            "Sale Price Per Unit (Tsh)": "653.5094",
-            "Purchase Price Per Unit (Tsh)": "646.9743"
-        }
-    },
-    {
-        "fund_name": "Jikimu Fund",
-        "fund_date": "Wednesday, 24th of April 2024",
-        "fund_description": "Is an open–end balanced fund which aims at distributing income, periodically.",
-        "data": {
-            "Net Asset Value (Tsh)": "25, 026, 589, 551.9098",
-            "Outstanding Number of Units (Tsh)": "146, 901, 497.0620",
-            "Net Asset Value Per Unit (Tsh)": "170.3631",
-            "Sale Price Per Unit (Tsh)": "170.3631",
-            "Purchase Price Per Unit (Tsh)": "166.9558"
-        }
-    },
-    {
-        "fund_name": "Liquid Fund",
-        "fund_date": "Wednesday, 24th of April 2024",
-        "fund_description": "An open ended growth scheme, which seeks to provide alternative investment opportunity to investors.",
-        "data": {
-            "Net Asset Value (Tsh)": "1, 036, 855, 081, 561.8900",
-            "Outstanding Number of Units (Tsh)": "2, 606, 710, 109.9641",
-            "Net Asset Value Per Unit (Tsh)": "397.7639",
-            "Sale Price Per Unit (Tsh)": "397.7639",
-            "Purchase Price Per Unit (Tsh)": "397.7639"
-        }
-    },
-    {
-        "fund_name": "Bond Fund",
-        "fund_date": "Wednesday, 24th of April 2024",
-        "fund_description": "Bond Fund gives more room for investors to invest in various bonds and aims to distribute income Monthly, Semi Annually and Reinvestment of Income.",
-        "data": {
-            "Net Asset Value (Tsh)": "625, 082, 857, 486.4240",
-            "Outstanding Number of Units (Tsh)": "5, 356, 870, 647.0883",
-            "Net Asset Value Per Unit (Tsh)": "116.6881",
-            "Sale Price Per Unit (Tsh)": "116.6881",
-            "Purchase Price Per Unit (Tsh)": "116.6881"
-        }
-    }
+[
+{"fund_name": "Umoja Fund", "fund_date": "Wednesday, 24th of April 2024", "fund_description": "It is an open-ended balance fund that invests in a diversified portfolio which makes this fund best suited for a medium risk profile.", "data": {"Net Asset Value (Tsh)": "351 197 786 784.6440", "Outstanding Number of Units (Tsh)": "345, 523, 230.4691", "Net Asset Value Per Unit (Tsh)": "1,016.4231", "Sale Price Per Unit (Tsh)": "1,016.4231", "Purchase Price Per Unit (Tsh)": "1,006.2589"}},
+{"fund_name": "Wekeza Maisha Fund", "fund_date": "Wednesday, 24th of April 2024", "fund_description": "The Wekeza Maisha/Invest life Unit Trust is the first investment cum insurance scheme to be established by UTT AMIS in the country.", "data": {"Net Asset Value (Tsh)": "13 869 096 457.5234", "Outstanding Number of Units (Tsh)": "15, 588, 202.2294", "Net Asset Value Per Unit (Tsh)": "889.7175", "Sale Price Per Unit (Tsh)": "889.7175", "Purchase Price Per Unit (Tsh)": "871.9232"}},
+{"fund_name": "Watoto Fund", "fund_date": "Wednesday, 24th of April 2024", "fund_description": "A child benefits an open-end balanced fund, which seeks to generate long-term capital appreciation.", "data": {"Net Asset Value (Tsh)": "17 477 574 453.8411", "Outstanding Number of Units (Tsh)": "26, 744, 182.8497", "Net Asset Value Per Unit (Tsh)": "653.5094", "Sale Price Per Unit (Tsh)": "653.5094", "Purchase Price Per Unit (Tsh)": "646.9743"}},
+{"fund_name": "Jikimu Fund", "fund_date": "Wednesday, 24th of April 2024", "fund_description": "Is an open–end balanced fund which aims at distributing income, periodically.", "data": {"Net Asset Value (Tsh)": "25 026 589 551.9098", "Outstanding Number of Units (Tsh)": "146, 901, 497.0620", "Net Asset Value Per Unit (Tsh)": "170.3631", "Sale Price Per Unit (Tsh)": "170.3631", "Purchase Price Per Unit (Tsh)": "166.9558"}},
+{"fund_name": "Liquid Fund", "fund_date": "Wednesday, 24th of April 2024", "fund_description": "An open ended growth scheme, which seeks to provide alternative investment opportunity to investors.", "data": {"Net Asset Value (Tsh)": "1 036 855 081 561.8900", "Outstanding Number of Units (Tsh)": "2, 606, 710, 109.9641", "Net Asset Value Per Unit (Tsh)": "397.7639", "Sale Price Per Unit (Tsh)": "397.7639", "Purchase Price Per Unit (Tsh)": "397.7639"}},
+{"fund_name": "Bond Fund", "fund_date": "Wednesday, 24th of April 2024", "fund_description": "Bond Fund gives more room for investors to invest in various bonds and aims to distribute income Monthly, Semi Annually and Reinvestment of Income.", "data": {"Net Asset Value (Tsh)": "625 082 857 486.4240", "Outstanding Number of Units (Tsh)": "5, 356, 870, 647.0883", "Net Asset Value Per Unit (Tsh)": "116.6881", "Sale Price Per Unit (Tsh)": "116.6881", "Purchase Price Per Unit (Tsh)": "116.6881"}}
 ]
