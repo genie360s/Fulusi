@@ -17,5 +17,4 @@ for spider in spiders:
    
     command = f"scrapy crawl {spider} -o {file_path}"
     
-
     subprocess.run(command, shell=True)
