@@ -1,3 +1,9 @@
 [
-
+{"currency": " USD:", "buying": 2545.0, "selling": 2615.0},
+{"currency": " EUR:", "buying": 2711.0, "selling": 3069.0},
+{"currency": " STG:", "buying": 3207.0, "selling": 3501.0},
+{"currency": " AED:", "buying": 705.0, "selling": 786.0},
+{"currency": " UGX:", "buying": 0.73, "selling": 0.97},
+{"currency": " KES:", "buying": 17.15, "selling": 23.81},
+{"currency": " ZAR:", "buying": 135.62, "selling": 147.55}
 ]

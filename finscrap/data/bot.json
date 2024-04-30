@@ -1,12 +1,12 @@
 [
-{"currency": "BIF", "buying": 0.8917, "selling": 0.9},
-{"currency": "EUR", "buying": 2746.9022, "selling": 2774.6306},
-{"currency": "GBP", "buying": 3205.0617, "selling": 3237.3717},
-{"currency": "JPY", "buying": 16.4996, "selling": 16.6614},
-{"currency": "KES", "buying": 19.1654, "selling": 19.2136},
-{"currency": "RWF", "buying": 1.9773, "selling": 2.0235},
-{"currency": "UGX", "buying": 0.6486, "selling": 0.6806},
-{"currency": "USD", "buying": 2568.1584, "selling": 2593.84},
-{"currency": "GOLD", "buying": 5971661.7196, "selling": 6032675.2568},
-{"currency": "ZAR", "buying": 134.9312, "selling": 136.249}
+{"currency": "BIF", "buying": 0.8887, "selling": 0.8969},
+{"currency": "EUR", "buying": 2744.4274, "selling": 2772.9059},
+{"currency": "GBP", "buying": 3209.5542, "selling": 3242.6839},
+{"currency": "JPY", "buying": 16.3716, "selling": 16.5321},
+{"currency": "KES", "buying": 19.0324, "selling": 19.0809},
+{"currency": "RWF", "buying": 1.9695, "selling": 2.0155},
+{"currency": "UGX", "buying": 0.645, "selling": 0.6768},
+{"currency": "USD", "buying": 2559.8614, "selling": 2585.46},
+{"currency": "GOLD", "buying": 5976994.7519, "selling": 6037824.738},
+{"currency": "ZAR", "buying": 137.0148, "selling": 138.3353}
 ]
