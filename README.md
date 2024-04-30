@@ -11,10 +11,10 @@ According to the recent Tanzania CENSUS survey , 1% of Tanzanians invest in the 
 - [x] Building the UI and UX of the platform
 - [x] Implementin User Authentication
 - [x] visualizing data collected in table format
-- [] Visualize growth across time , by collecting and storing data in a database.
-- [] Able to compare forex prices in banks and suggest the cheapest bank to do exchange.
-- [] Predict how the investment instruments will perform though machine learning models.
-- [] Chatbot that will use both native language swahili and english to provide updates.
+- [ ] Visualize growth across time , by collecting and storing data in a database.
+- [ ] Able to compare forex prices in banks and suggest the cheapest bank to do exchange.
+- [ ] Predict how the investment instruments will perform though machine learning models.
+- [ ] Chatbot that will use both native language swahili and english to provide updates.
 
 ## How to get started 🚀!
 
