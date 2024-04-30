@@ -24,7 +24,7 @@ According to the recent Tanzania CENSUS survey , 1% of Tanzanians invest in the 
 - git 
 
 ### NB
-- The project is built on Linux Kerner | Ubuntu OS ( 22.04 )
+- The project is built on Linux Kernel | Ubuntu OS ( 22.04 )
 
 ## Steps
 
