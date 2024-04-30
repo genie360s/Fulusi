@@ -1,4 +1,5 @@
 #dashboard blue print
+import os
 from flask import (
     Blueprint, flash, g, redirect, render_template, url_for, request
 )
@@ -7,6 +8,11 @@ from werkzeug.exceptions import abort
 from flaskr.auth import login_required
 from flaskr.db import get_db
 from requests.exceptions import Timeout
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
 bp = Blueprint('dashboard', __name__, url_prefix='/dashboard')
 @bp.route('/dashboard', methods=('GET', 'POST'))
 @login_required
@@ -72,3 +78,40 @@ def mutual_funds():
         
         flash(error)
     return render_template('dashboard/mutual_funds.html')
+
+@bp.route('/stock_markets', methods=('GET', 'POST'))
+@login_required
+def stock_markets():
+    #checks which stock market is selected
+
+    if request.method == 'POST':
+        stock_market = request.form['stock_market']
+        error = None
+
+        if not stock_market:
+            error = 'Stock market is required.'
+
+        if  stock_market == "dse":
+           
+            api = os.getenv("DSE_API_URL")
+            
+            
+            api_url = f"{api}"
+
+            try :
+                response = requests.get(api_url)
+                if response.status_code == 200:
+                    stock_data = response.json()
+                    stock_data = stock_data['data']
+                    print(stock_data)
+                    print("DSE")
+                    return render_template('dashboard/stock_markets.html', stock_data=stock_data)
+          
+            except Exception as e:
+                # Handle other exceptions
+                return render_template('error.html', message=f"Failed to fetch data from the API: {str(e)}")
+            else:
+                # Handle other errors
+                return render_template('error.html', message="Failed to fetch data from the API")
+        flash(error)
+    return render_template('dashboard/stock_markets.html')
