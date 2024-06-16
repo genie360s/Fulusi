@@ -7,6 +7,10 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
 BOT_NAME = "finscrap"
 
 SPIDER_MODULES = ["finscrap.spiders"]
@@ -95,3 +99,15 @@ FEED_EXPORT_ENCODING = "utf-8"
 #fixing SSL issue for deprecated TLSv1
 DOWNLOADER_CLIENT_TLS_METHOD = "TLS"
 DOWNLOADER_CLIENT_TLS_CIPHERS = "DEFAULT:!DH"
+
+
+#DATABASE SETTINGS
+DATABASE  = {
+    'drivername' : 'postgresql',
+    'host' : os.getenv('DB_HOST'),
+    'port' : os.getenv('DB_PORT'),
+    'username' : os.getenv('DB_USER'),
+    'password' : os.getenv('DB_PASSWORD'),
+    'database' : os.getenv('DB_NAME')
+}
+
