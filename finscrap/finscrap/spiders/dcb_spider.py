@@ -1,5 +1,5 @@
 import scrapy
-
+from finscrap.items import DcbItem
 class DcbSpider(scrapy.Spider):
     name = "dcb"
     start_urls = ['https://www.dcb.co.tz/']
@@ -13,9 +13,8 @@ class DcbSpider(scrapy.Spider):
             rates = rates.split('/')
             selling_rate = int(rates[0].strip().replace(",", ""))
             buying_rate = int(rates[1].strip().replace(",", ""))
-            yield {
-                'currency': currency_names.pop(0).strip() if currency_names else None,
-                'buying': float(buying_rate),
-                'selling': float(selling_rate),
-                
-            }
+            yield DcbItem (
+                currency = currency_names.pop(0).strip() if currency_names else None,
+                buying_price = float(buying_rate),
+                selling_price = float(selling_rate),
+            )

@@ -1,5 +1,5 @@
 import scrapy
-
+from finscrap.items import BotItem
 class BotSpider(scrapy.Spider):
     name = "bot"
     start_urls = ['https://www.bot.go.tz/',
@@ -19,8 +19,8 @@ class BotSpider(scrapy.Spider):
             print(exchange_rate_datas)
         
         for data in exchange_rate_datas:
-            yield {
-                'currency': data[0].strip() if data else None,
-                'buying': float(data[1].strip()) if data else None,
-                'selling': float(data[2].strip()) if data else None,
-            }
+            yield BotItem (
+                currency = data[0].strip() if data else None,
+                buying_price = float(data[1].strip()) if data else None,
+                selling_price = float(data[2].strip()) if data else None,
+            )

@@ -1,5 +1,5 @@
 import scrapy
-
+from finscrap.items import DashengItem
 class DangshengSpider(scrapy.Spider):
     name = "dasheng"
     start_urls =['https://chinadashengbank.co.tz/',
@@ -26,8 +26,8 @@ class DangshengSpider(scrapy.Spider):
             buying_prices.append(data)
 
         for note_type, selling_price, buying_price in zip(note_types, selling_prices, buying_prices):
-            yield {
-                'currency': note_type,
-                'buying': float(buying_price),
-                'selling': float(selling_price), 
-            }
+            yield DashengItem (
+                currency = note_type,
+                buying_price = float(buying_price),
+                selling_price = float(selling_price), 
+            )

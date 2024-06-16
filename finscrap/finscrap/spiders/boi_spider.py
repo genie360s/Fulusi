@@ -1,5 +1,5 @@
 import scrapy
-
+from finscrap.items import BoiItem
 class BoiSpider(scrapy.Spider):
     name = "boi"
     start_urls = ['https://boitanzania.co.tz/',]
@@ -25,14 +25,14 @@ class BoiSpider(scrapy.Spider):
             for group in groups:
                # Check if group has at least 3 elements before accessing group[2]
                 if len(group) >= 3:
-                    yield {
-                        'currency' : group[0] if group[0] else None,
-                        'buying' : float(group[1]) if group[1] else None,
-                        'selling' : float(group[2]) if group[2] else None,
-                    }
+                    yield BoiItem (
+                        currency = group[0] if group[0] else None,
+                        buying_price = float(group[1]) if group[1] else None,
+                        selling_price = float(group[2]) if group[2] else None,
+                    )
                 else:
-                    yield {
-                        'currency' : float(group[0]) if group[0] else None,
-                        'buying' : float(group[1]) if group[1] else None,
-                        'selling' : None,
-                    }
+                    yield BoiItem (
+                        currency = float(group[0]) if group[0] else None,
+                        buying_price = float(group[1]) if group[1] else None,
+                        selling_price = None,
+                    )

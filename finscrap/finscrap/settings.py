@@ -101,13 +101,8 @@ DOWNLOADER_CLIENT_TLS_METHOD = "TLS"
 DOWNLOADER_CLIENT_TLS_CIPHERS = "DEFAULT:!DH"
 
 
-#DATABASE SETTINGS
-DATABASE  = {
-    'drivername' : 'postgresql',
-    'host' : os.getenv('DB_HOST'),
-    'port' : os.getenv('DB_PORT'),
-    'username' : os.getenv('DB_USER'),
-    'password' : os.getenv('DB_PASSWORD'),
-    'database' : os.getenv('DB_NAME')
+# Configure item pipelines
+# See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
+ITEM_PIPELINES = {
+    "finscrap.pipelines.FinscrapPipeline": 300,
 }
-

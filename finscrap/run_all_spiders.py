@@ -6,15 +6,7 @@ spiders = [ 'amana', 'azania', 'baroda', 'boi', 'bot', 'dasheng', 'dcb', 'habib'
 
 # Loop through each spider
 for spider in spiders:
-    # Construct the file path
-    file_path = f"data/{spider}.json"
-    
-    # Check if the JSON file already exists
-    if os.path.exists(file_path):
-        # If the file exists, delete it
-        os.remove(file_path)
-    
    
-    command = f"scrapy crawl {spider} -o {file_path}"
+    command = f"scrapy crawl {spider}"
     
     subprocess.run(command, shell=True)

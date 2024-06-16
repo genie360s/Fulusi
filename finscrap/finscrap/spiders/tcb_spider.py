@@ -1,5 +1,5 @@
 import scrapy
-
+from finscrap.items import TcbItem
 class TcbSpider(scrapy.Spider):
     name = "tcb"
 
@@ -28,8 +28,8 @@ class TcbSpider(scrapy.Spider):
             exchange_rate_datas.append(exchange_rate_data)
 
         for curreny_name, data in zip(currency_names, exchange_rate_datas[1:]):
-            yield {
-                'currency': curreny_name.strip() if curreny_name else None,
-                'buying': float(data[0].strip().replace(',','') if data[0] else None),
-                'selling': float(data[1].strip().replace(',', '') if data[1] else None),
-            }
+            yield TcbItem (
+                currency = curreny_name.strip() if curreny_name else None,
+                buying_price = float(data[0].strip().replace(',','') if data[0] else None),
+                selling_price = float(data[1].strip().replace(',', '') if data[1] else None),
+            )

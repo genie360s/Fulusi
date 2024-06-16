@@ -18,7 +18,7 @@ class FinscrapPipeline:
             host=os.getenv("DB_HOST"),
             user=os.getenv("DB_USER"),
             password=os.getenv("DB_PASSWORD"),
-            database=os.getenv("DB_NAME"),
+            dbname=os.getenv("DB_NAME"),
             port=os.getenv("DB_PORT")
         )
         
@@ -177,7 +177,7 @@ class FinscrapPipeline:
                 creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 currency VARCHAR(255) NOT NULL,
                 buying_price_tt_od FLOAT NOT NULL,
-                selling_price_tt_od FLOAT NOT NULL
+                selling_price_tt_od FLOAT NOT NULL,
                 selling_fc_notes FLOAT NOT NULL,
                 buying_fc_notes_less_50_euro_usd FLOAT NOT NULL,
                 buying_fc_notes_more_50_euro_usd FLOAT NOT NULL

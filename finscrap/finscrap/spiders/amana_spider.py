@@ -1,5 +1,5 @@
 import scrapy
-
+from finscrap.items import AmanaItem
 class AmanaSpider(scrapy.Spider):
     name = "amana"
 
@@ -26,9 +26,9 @@ class AmanaSpider(scrapy.Spider):
             selling_prices.append(selling_price)
 
         for currency_name, buying_price, selling_price in zip(currency_names, buying_prices, selling_prices):
-            yield {
-                'currency': currency_name,
-                'buying': buying_price,
-                'selling': selling_price
-            }
+            yield AmanaItem (
+                currency = currency_name,
+                buying_price = buying_price,
+                selling_price = selling_price
+            )
           

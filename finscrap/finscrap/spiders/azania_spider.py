@@ -1,5 +1,5 @@
 import scrapy
-
+from finscrap.items import AzaniaItem
 class AzaniaSpider(scrapy.Spider):
     name = "azania"
     start_urls = ['https://azaniabank.co.tz/'
@@ -17,8 +17,8 @@ class AzaniaSpider(scrapy.Spider):
             print(exchange_rate_datas)  
 
         for exchange_rate_data in exchange_rate_datas:
-            yield {
-                'currency': exchange_rate_data[0],
-                'buying': float(exchange_rate_data[1].strip().replace(',', '')),
-                'selling': float(exchange_rate_data[2].strip().replace(',', '')),
-            }
+            yield AzaniaItem(
+                currency = exchange_rate_data[0],
+                buying_price = float(exchange_rate_data[1].strip().replace(',', '')),
+                selling_price = float(exchange_rate_data[2].strip().replace(',', '')),
+            )

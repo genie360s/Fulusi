@@ -1,5 +1,5 @@
 import scrapy
-
+from finscrap.items import NmbItem
 class NmbSpider(scrapy.Spider):
     name = 'nmb'
     start_urls = ['https://www.nmbbank.co.tz/', 
@@ -18,9 +18,9 @@ class NmbSpider(scrapy.Spider):
             print(exchange_rate_datas)
         
         for exchange_rate_data in exchange_rate_datas:
-            yield {
-                'currency': exchange_rate_data[0].strip() if exchange_rate_data[0] else None,
-                'buying': float(exchange_rate_data[1].strip().replace(',', '') if exchange_rate_data[1] else None),
-                'selling': float(exchange_rate_data[2].strip().replace(',', '') if exchange_rate_data[2] else None),
-            }
+            yield NmbItem (
+                currency = exchange_rate_data[0].strip() if exchange_rate_data[0] else None,
+                buying_price = float(exchange_rate_data[1].strip().replace(',', '') if exchange_rate_data[1] else None),
+                selling_price = float(exchange_rate_data[2].strip().replace(',', '') if exchange_rate_data[2] else None),
+            )
         

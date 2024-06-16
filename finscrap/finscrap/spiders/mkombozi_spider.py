@@ -1,5 +1,5 @@
 import scrapy
-
+from finscrap.items import MkomboziItem
 class MkomboziSpider(scrapy.Spider):
 
     name = "mkombozi"
@@ -29,10 +29,10 @@ class MkomboziSpider(scrapy.Spider):
                 print(selling_rates)
 
         for currency, buying_rate, selling_rate in zip(currencies, buying_rates, selling_rates):
-            yield {
-                'currency': currency.strip() if currency else None,
-                'buying': float(buying_rate if buying_rate else None),
-                'selling':float(selling_rate if selling_rate else None),
-            }
+            yield MkomboziItem (
+                currency = currency.strip() if currency else None,
+                buying_price = float(buying_rate if buying_rate else None),
+                selling = float(selling_rate if selling_rate else None),
+            )
 
         
