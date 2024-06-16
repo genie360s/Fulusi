@@ -53,8 +53,11 @@ class HabibItem(scrapy.Item):
 
 class IcbItem(scrapy.Item):
     currency = scrapy.Field()
-    buying_price = scrapy.Field()
-    selling_price = scrapy.Field()
+    buying_price_tt_od = scrapy.Field()
+    selling_price_tt_od = scrapy.Field()
+    selling_fc_notes = scrapy.Field()
+    buying_fc_notes_less_50_euro_usd = scrapy.Field()
+    buying_fc_notes_more_50_euro_usd = scrapy.Field()
 
 class MkomboziItem(scrapy.Item):
     currency = scrapy.Field()
