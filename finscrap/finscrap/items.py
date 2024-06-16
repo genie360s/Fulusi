@@ -81,3 +81,14 @@ class FaidaItem(scrapy.Item):
     nav_per_unit_tzs = scrapy.Field()
     sales_price_per_unit_tzs = scrapy.Field()
     repurchase_price_per_unit_tzs = scrapy.Field()
+
+class UttAmisItem(scrapy.Item):
+    fund_name = scrapy.Field()
+    fund_date = scrapy.Field()
+    fund_description = scrapy.Field()
+    data = scrapy.Field()
+    data['net_asset_value_tzs'] = scrapy.Field()
+    data['outstanding_number_of_units_tzs'] = scrapy.Field()
+    data['net_asset_value_per_unit_tzs'] = scrapy.Field()
+    data['sale_price_per_unit_tzs'] = scrapy.Field()
+    data['purchase_price_per_unit_tzs'] = scrapy.Field()

@@ -198,6 +198,21 @@ class FinscrapPipeline:
             )
         """)
 
+        #uttamis_fund table
+        self.cursor.execute("""
+            CREATE TABLE IF NOT EXISTS uttamis_fund (
+                id SERIAL PRIMARY KEY,
+                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                fund_name VARCHAR(255) NOT NULL,
+                fund_date DATE NOT NULL,
+                net_asset_value_tzs FLOAT NOT NULL,
+                outstanding_number_of_units FLOAT NOT NULL,
+                nav_per_unit_tzs FLOAT NOT NULL,
+                sales_price_per_unit_tzs FLOAT NOT NULL,
+                repurchase_price_per_unit_tzs FLOAT NOT NULL
+            )
+        """)
+
         self.connection.commit()
 
     def close_spider(self, spider):
@@ -271,6 +286,11 @@ class FinscrapPipeline:
                 INSERT INTO faida_fund (date, net_asset_value_tzs, outstanding_number_of_units, nav_per_unit_tzs, sales_price_per_unit_tzs, repurchase_price_per_unit_tzs)
                 VALUES (%s, %s, %s, %s, %s, %s)
             """, (item["date"], item["net_asset_value"], item["outstanding_number_of_units"], item["nav_per_unit"], item["sales_price_per_unit"], item["repurchase_price_per_unit"]))
+        elif spider.name == "utt_amis":
+            self.cursor.execute("""
+                INSERT INTO uttamis_fund (fund_name, fund_date, net_asset_value_tzs, outstanding_number_of_units, nav_per_unit_tzs, sales_price_per_unit_tzs, repurchase_price_per_unit_tzs)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """, (item["fund_name"], item["fund_date"], item["data"]["net_asset_value_tzs"], item["data"]["outstanding_number_of_units_tzs"], item["data"]["net_asset_value_per_unit_tzs"], item["data"]["sale_price_per_unit_tzs"], item["data"]["purchase_price_per_unit_tzs"]))
         self.connection.commit()
         return item
 
