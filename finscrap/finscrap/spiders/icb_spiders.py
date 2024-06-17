@@ -21,8 +21,8 @@ class IcbSpider(scrapy.Spider):
         for exchange_rate_data in exchange_rate_datas:
             yield IcbItem (
                 currency = exchange_rate_data[0].strip() if exchange_rate_data[0] else None,
-                selling_tt_od = float(exchange_rate_data[1].strip() if exchange_rate_data[1] else None),
-                buying_tt_od = float(exchange_rate_data[2].strip() if exchange_rate_data[2] else None),
+                selling_price_tt_od = float(exchange_rate_data[1].strip() if exchange_rate_data[1] else None),
+                buying_price_tt_od = float(exchange_rate_data[2].strip() if exchange_rate_data[2] else None),
                 selling_fc_notes = float(exchange_rate_data[3].strip() if exchange_rate_data[3] else None),
                 buying_fc_notes_less_50_euro_usd = float(exchange_rate_data[4].strip() if exchange_rate_data[4] else None),
                 buying_fc_notes_more_50_euro_usd = float(exchange_rate_data[5].strip() if exchange_rate_data[5] else None),

@@ -4,7 +4,7 @@ class BarodaSpider(scrapy.Spider):
     name = "baroda"
     start_urls = ['https://www.bankofbaroda.co.tz/indicative-forex-exchange',
     ]
-
+    # @todo: update the extraction with respect to the new website layout
     def parse(self, response):
         exchange_rate_table = response.css('table.responsiveTable.tableData')
         print(exchange_rate_table)

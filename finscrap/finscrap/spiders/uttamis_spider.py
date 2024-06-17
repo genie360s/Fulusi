@@ -29,10 +29,10 @@ class UttAmis(scrapy.Spider):
                     fund_name = fund_name.strip() if fund_name else None,
                     fund_date = fund_date.strip() if fund_date else None,
                     data = {
-                        "net_asset_value_tzs" : data_values[0].strip().replace(",","") if data_values[0] else None,
-                        "outstanding_number_of_units_tzs" : data_values[1].strip() if data_values[1] else None,
-                        "net_asset_value_per_unit_tzs" : data_values[2].strip() if data_values[2] else None,
-                        "sale_price_per_unit_tzs" : data_values[3].strip() if data_values[3] else None,
-                        "purchase_price_per_unit_tzs" : data_values[4].strip() if data_values[4] else None,
+                        "net_asset_value_tzs" : float(data_values[0].strip().replace(",","").replace(" ", "")) if data_values[0] else None,
+                        "outstanding_number_of_units_tzs" : float(data_values[1].strip().replace(",","").replace(" ", "")) if data_values[1] else None,
+                        "net_asset_value_per_unit_tzs" : float(data_values[2].strip().replace(",","").replace(" ", "")) if data_values[2] else None,
+                        "sale_price_per_unit_tzs" : float(data_values[3].strip().replace(",","").replace(" ", "")) if data_values[3] else None,
+                        "purchase_price_per_unit_tzs" : float(data_values[4].strip().replace(",","").replace(" ", "")) if data_values[4] else None,
                     }
                 )

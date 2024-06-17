@@ -6,7 +6,7 @@ class TcbSpider(scrapy.Spider):
     start_urls = ['https://www.tcbbank.co.tz/home/en',]
 
     def parse(self, response):
-
+        # @todo: update the extraction with respect to the new website layout
         exchange_rate_div_block = response.css('div.newssectionPad.yellow_bg')
         print(exchange_rate_div_block.get())
         exchange_rate_date = exchange_rate_div_block.css('p::text').get()

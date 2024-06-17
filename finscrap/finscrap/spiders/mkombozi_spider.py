@@ -32,7 +32,7 @@ class MkomboziSpider(scrapy.Spider):
             yield MkomboziItem (
                 currency = currency.strip() if currency else None,
                 buying_price = float(buying_rate if buying_rate else None),
-                selling = float(selling_rate if selling_rate else None),
+                selling_price = float(selling_rate if selling_rate else None),
             )
 
         

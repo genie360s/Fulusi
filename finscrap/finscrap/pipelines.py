@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 import os
 # load environment variables from .env file
 load_dotenv()
+import logging
 import psycopg
 
 class FinscrapPipeline:
@@ -189,7 +190,7 @@ class FinscrapPipeline:
             CREATE TABLE IF NOT EXISTS faida_fund (
                 id SERIAL PRIMARY KEY,
                 creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                date DATE NOT NULL,
+                date VARCHAR(255) NOT NULL,
                 net_asset_value_tzs FLOAT NOT NULL,
                 outstanding_number_of_units FLOAT NOT NULL,
                 nav_per_unit_tzs FLOAT NOT NULL,
@@ -204,7 +205,7 @@ class FinscrapPipeline:
                 id SERIAL PRIMARY KEY,
                 creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 fund_name VARCHAR(255) NOT NULL,
-                fund_date DATE NOT NULL,
+                fund_date VARCHAR(255) NOT NULL,
                 net_asset_value_tzs FLOAT NOT NULL,
                 outstanding_number_of_units FLOAT NOT NULL,
                 nav_per_unit_tzs FLOAT NOT NULL,
@@ -220,77 +221,86 @@ class FinscrapPipeline:
         self.connection.close()
     
     def process_item(self, item, spider):
-        # insert the data into the database
-        if spider.name == "amana":
-            self.cursor.execute("""
-                INSERT INTO amana_bank (currency, buying_price, selling_price)
-                VALUES (%s, %s, %s)
-            """, (item["currency"], item["buying_price"], item["selling_price"]))
-        elif spider.name == "azania":
-            self.cursor.execute("""
-                INSERT INTO azania_bank (currency, buying_price, selling_price)
-                VALUES (%s, %s, %s)
-            """, (item["currency"], item["buying_price"], item["selling_price"]))
-        elif spider.name == "boi":
-            self.cursor.execute("""
-                INSERT INTO bank_of_india (currency, buying_price, selling_price)
-                VALUES (%s, %s, %s)
-            """, (item["currency"], item["buying_price"], item["selling_price"]))
-        elif spider.name == "bot":
-            self.cursor.execute("""
-                INSERT INTO bank_of_tanzania (currency, buying_price, selling_price)
-                VALUES (%s, %s, %s)
-            """, (item["currency"], item["buying_price"], item["selling_price"]))
-        elif spider.name == "dasheng":
-            self.cursor.execute("""
-                INSERT INTO dasheng_bank (currency, buying_price, selling_price)
-                VALUES (%s, %s, %s)
-            """, (item["currency"], item["buying_price"], item["selling_price"]))
-        elif spider.name == "baroda":
-            self.cursor.execute("""
-                INSERT INTO bank_of_baroda (currency, buying_price, selling_price)
-                VALUES (%s, %s, %s)
-            """, (item["currency"], item["buying_price"], item["selling_price"]))
-        elif spider.name == "tcb":
-            self.cursor.execute("""
-                INSERT INTO tanzania_commercial_bank (currency, buying_price, selling_price)
-                VALUES (%s, %s, %s)
-            """, (item["currency"], item["buying_price"], item["selling_price"]))
-        elif spider.name == "dcb":
-            self.cursor.execute("""
-                INSERT INTO dcb_commercial_bank (currency, buying_price, selling_price)
-                VALUES (%s, %s, %s)
-            """, (item["currency"], item["buying_price"], item["selling_price"]))
-        elif spider.name == "habib":
-            self.cursor.execute("""
-                INSERT INTO habib_african_bank (currency, buying_price, selling_price)
-                VALUES (%s, %s, %s)
-            """, (item["currency"], item["buying_price"], item["selling_price"]))   
-        elif spider.name == "mkombozi":
-            self.cursor.execute("""
-                INSERT INTO mkombozi_bank (currency, buying_price, selling_price)
-                VALUES (%s, %s, %s)
-            """, (item["currency"], item["buying_price"], item["selling_price"]))
-        elif spider.name == "nmb":
-            self.cursor.execute("""
-                INSERT INTO national_microfinance_bank (currency, buying_price, selling_price)
-                VALUES (%s, %s, %s)
-            """, (item["currency"], item["buying_price"], item["selling_price"]))
-        elif spider.name == "icb":
-            self.cursor.execute("""
-                INSERT INTO international_commercial_bank (currency, buying_price_tt_od, selling_price_tt_od, selling_fc_notes, buying_fc_notes_less_50_euro_usd, buying_fc_notes_more_50_euro_usd)
-                VALUES (%s, %s, %s, %s, %s, %s)
-            """, (item["currency"], item["buying_price_tt_od"], item["selling_price_tt_od"], item["selling_fc_notes"], item["buying_fc_notes_less_50_euro_usd"], item["buying_fc_notes_more_50_euro_usd"]))
-        elif spider.name == "faida":
-            self.cursor.execute("""
-                INSERT INTO faida_fund (date, net_asset_value_tzs, outstanding_number_of_units, nav_per_unit_tzs, sales_price_per_unit_tzs, repurchase_price_per_unit_tzs)
-                VALUES (%s, %s, %s, %s, %s, %s)
-            """, (item["date"], item["net_asset_value"], item["outstanding_number_of_units"], item["nav_per_unit"], item["sales_price_per_unit"], item["repurchase_price_per_unit"]))
-        elif spider.name == "utt_amis":
-            self.cursor.execute("""
-                INSERT INTO uttamis_fund (fund_name, fund_date, net_asset_value_tzs, outstanding_number_of_units, nav_per_unit_tzs, sales_price_per_unit_tzs, repurchase_price_per_unit_tzs)
-                VALUES (%s, %s, %s, %s, %s, %s, %s)
-            """, (item["fund_name"], item["fund_date"], item["data"]["net_asset_value_tzs"], item["data"]["outstanding_number_of_units_tzs"], item["data"]["net_asset_value_per_unit_tzs"], item["data"]["sale_price_per_unit_tzs"], item["data"]["purchase_price_per_unit_tzs"]))
-        self.connection.commit()
-        return item
+        try:
+            # Log the item being processed
+            logging.info(f"Processing item: {item}")
 
+            # insert the data into the database
+            if spider.name == "amana":
+                self.cursor.execute("""
+                    INSERT INTO amana_bank (currency, buying_price, selling_price)
+                    VALUES (%s, %s, %s)
+                """, (item["currency"], item["buying_price"], item["selling_price"]))
+            elif spider.name == "azania":
+                self.cursor.execute("""
+                    INSERT INTO azania_bank (currency, buying_price, selling_price)
+                    VALUES (%s, %s, %s)
+                """, (item["currency"], item["buying_price"], item["selling_price"]))
+            elif spider.name == "boi":
+                self.cursor.execute("""
+                    INSERT INTO bank_of_india (currency, buying_price, selling_price)
+                    VALUES (%s, %s, %s)
+                """, (item["currency"], item["buying_price"], item["selling_price"]))
+            elif spider.name == "bot":
+                self.cursor.execute("""
+                    INSERT INTO bank_of_tanzania (currency, buying_price, selling_price)
+                    VALUES (%s, %s, %s)
+                """, (item["currency"], item["buying_price"], item["selling_price"]))
+            elif spider.name == "dasheng":
+                self.cursor.execute("""
+                    INSERT INTO dasheng_bank (currency, buying_price, selling_price)
+                    VALUES (%s, %s, %s)
+                """, (item["currency"], item["buying_price"], item["selling_price"]))
+            elif spider.name == "baroda":
+                self.cursor.execute("""
+                    INSERT INTO bank_of_baroda (currency, buying_price, selling_price)
+                    VALUES (%s, %s, %s)
+                """, (item["currency"], item["buying_price"], item["selling_price"]))
+            elif spider.name == "tcb":
+                self.cursor.execute("""
+                    INSERT INTO tanzania_commercial_bank (currency, buying_price, selling_price)
+                    VALUES (%s, %s, %s)
+                """, (item["currency"], item["buying_price"], item["selling_price"]))
+            elif spider.name == "dcb":
+                self.cursor.execute("""
+                    INSERT INTO dcb_commercial_bank (currency, buying_price, selling_price)
+                    VALUES (%s, %s, %s)
+                """, (item["currency"], item["buying_price"], item["selling_price"]))
+            elif spider.name == "habib":
+                self.cursor.execute("""
+                    INSERT INTO habib_african_bank (currency, buying_price, selling_price)
+                    VALUES (%s, %s, %s)
+                """, (item["currency"], item["buying_price"], item["selling_price"]))   
+            elif spider.name == "mkombozi":
+                self.cursor.execute("""
+                    INSERT INTO mkombozi_bank (currency, buying_price, selling_price)
+                    VALUES (%s, %s, %s)
+                """, (item["currency"], item["buying_price"], item["selling_price"]))
+            elif spider.name == "nmb":
+                self.cursor.execute("""
+                    INSERT INTO national_microfinance_bank (currency, buying_price, selling_price)
+                    VALUES (%s, %s, %s)
+                """, (item["currency"], item["buying_price"], item["selling_price"]))
+            elif spider.name == "icb":
+                self.cursor.execute("""
+                    INSERT INTO international_commercial_bank (currency, buying_price_tt_od, selling_price_tt_od, selling_fc_notes, buying_fc_notes_less_50_euro_usd, buying_fc_notes_more_50_euro_usd)
+                    VALUES (%s, %s, %s, %s, %s, %s)
+                """, (item["currency"], item["buying_price_tt_od"], item["selling_price_tt_od"], item["selling_fc_notes"], item["buying_fc_notes_less_50_euro_usd"], item["buying_fc_notes_more_50_euro_usd"]))
+            elif spider.name == "faida":
+                self.cursor.execute("""
+                    INSERT INTO faida_fund (date, net_asset_value_tzs, outstanding_number_of_units, nav_per_unit_tzs, sales_price_per_unit_tzs, repurchase_price_per_unit_tzs)
+                    VALUES (%s, %s, %s, %s, %s, %s)
+                """, (item["date"], item["net_asset_value_tzs"], item["outstanding_number_of_units"], item["nav_per_unit_tzs"], item["sales_price_per_unit_tzs"], item["repurchase_price_per_unit_tzs"]))
+            elif spider.name == "utt_amis":
+                self.cursor.execute("""
+                    INSERT INTO uttamis_fund (fund_name, fund_date, net_asset_value_tzs, outstanding_number_of_units, nav_per_unit_tzs, sales_price_per_unit_tzs, repurchase_price_per_unit_tzs)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                """, (item["fund_name"], item["fund_date"], item["data"]["net_asset_value_tzs"], item["data"]["outstanding_number_of_units_tzs"], item["data"]["net_asset_value_per_unit_tzs"], item["data"]["sale_price_per_unit_tzs"], item["data"]["purchase_price_per_unit_tzs"]))
+            # Commit the transaction
+            self.connection.commit()
+            logging.info(f"Item successfully processed: {item}")
+        except Exception as e:
+            # Log the error
+            logging.error(f"Error processing item: {item}, error: {e}")
+            self.connection.rollback()
+        return item

@@ -32,7 +32,7 @@ class BoiSpider(scrapy.Spider):
                     )
                 else:
                     yield BoiItem (
-                        currency = float(group[0]) if group[0] else None,
+                        currency = group[0] if group[0] else None,
                         buying_price = float(group[1]) if group[1] else None,
                         selling_price = None,
                     )
