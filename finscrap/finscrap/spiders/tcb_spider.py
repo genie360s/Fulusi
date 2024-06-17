@@ -6,30 +6,35 @@ class TcbSpider(scrapy.Spider):
     start_urls = ['https://www.tcbbank.co.tz/home/en',]
 
     def parse(self, response):
-        # @todo: update the extraction with respect to the new website layout
-        exchange_rate_div_block = response.css('div.newssectionPad.yellow_bg')
-        print(exchange_rate_div_block.get())
-        exchange_rate_date = exchange_rate_div_block.css('p::text').get()
-        exchange_rate_date = exchange_rate_date.strip().replace("Updated On :","") if exchange_rate_date else None
-        exchange_rate_table = exchange_rate_div_block.css('table')
-        exchange_rate_table_rows = exchange_rate_table.css('tr')
-        currency_names_td  = exchange_rate_table_rows.css('td')
-        currency_names_p = currency_names_td.css('p')
-        currency_names = currency_names_p.css('b::text').getall()
-        print(currency_names)
+        exchange_rate_marquee = response.css('marquee')
+        exchange_rate_ul = exchange_rate_marquee.css('ul')
+        exchange_rate_li = exchange_rate_ul.css('li')
+        exchange_rate_b = exchange_rate_ul.css('b::text').getall()
+        exchange_rate_blocks = exchange_rate_li.css('::text').getall()
         
-        print(exchange_rate_table_rows.get())
 
-        exchange_rate_datas = []
+        exchange_rate_currencies = []
+        for currency in exchange_rate_b:
+            exchange_rate_currencies.append(currency.strip().replace(" ","").replace(":",""))
+            print(exchange_rate_currencies)
 
-        for row in exchange_rate_table_rows:
-            exchange_rate_td = row.css('td')
-            exchange_rate_data = exchange_rate_td.css('p::text').getall()
-            exchange_rate_datas.append(exchange_rate_data)
+        
+        selling_prices = []
+        buying_prices = []
 
-        for curreny_name, data in zip(currency_names, exchange_rate_datas[1:]):
-            yield TcbItem (
-                currency = curreny_name.strip() if curreny_name else None,
-                buying_price = float(data[0].strip().replace(',','') if data[0] else None),
-                selling_price = float(data[1].strip().replace(',', '') if data[1] else None),
-            )
+        for price in exchange_rate_blocks:
+            price_split_colon = price.split(":")
+            buying_selling_prices = price_split_colon[0].split("-")
+
+            if len(buying_selling_prices) == 2:
+                buying_prices.append(buying_selling_prices[0].strip().replace("Buy","").replace(",","").replace(" ","").strip())
+                print(buying_prices)
+                selling_prices.append(buying_selling_prices[1].strip().replace("Sell","").replace(",","").replace(" ","").strip())
+                print(selling_prices)
+
+                for curreny_name, buying_price, selling_price in zip(exchange_rate_currencies, buying_prices, selling_prices):
+                    yield TcbItem (
+                        currency = curreny_name.strip() if curreny_name else None,
+                        buying_price = float(buying_price) if buying_price else None,
+                        selling_price = float(selling_price) if selling_price else None
+                    )
