@@ -4,28 +4,30 @@ class DangshengSpider(scrapy.Spider):
     name = "dasheng"
     start_urls =['https://chinadashengbank.co.tz/',
                  ]
-    # @todo: update the extraction with respect to the new website layout
     def parse(self, response):
-        sell_data = response.css('strong::text').getall()
-        strong = response.css('strong')
-        buy_data = strong.css('span::text').getall()
-        note_types = []
-        print("hi")
-        print(sell_data)
-        large_notes = sell_data[0].strip().replace(",", "") if sell_data[0].strip() else None
-        small_notes = sell_data[2].strip().replace(",", "") if sell_data[2] else None
-        note_types.append(large_notes)
-        note_types.append(small_notes)
-        sell_large_note = sell_data[1].replace("Sell", "").replace(",", "").strip() if sell_data[1] else None
-        sell_small_note = sell_data[3].replace("Sell", "").replace(",", "").strip() if sell_data[3] else None
-        selling_prices = []
-        selling_prices.append(sell_large_note)
-        selling_prices.append(sell_small_note)
-
+        div_exchange_rate_block = response.css('div.scrolling-text-container')
+        span_exchange_rate = div_exchange_rate_block.css('span.exchange-rate')
+        span_forex_data = span_exchange_rate.css('span::text').getall()
+        print(span_forex_data)
+        note_types = ['USD Small Notes', 'USD Large Notes']
+        prices = []
         buying_prices = []
-        for data in buy_data:
-            data = data.replace("Buy", "").strip()
-            buying_prices.append(data)
+        selling_prices = []
+
+        for price in span_forex_data:
+            price_split = price.split("-")
+            price = price_split[-1].strip().replace(",", "").replace(" ", "")
+            if price != '':
+                prices.append(price)
+                
+        for price in prices:
+            if prices.index(price) % 2 != 0:
+                buying_prices.append(price)
+                print(buying_prices)
+            else:
+                selling_prices.append(price)
+                print(selling_prices)
+            
 
         for note_type, selling_price, buying_price in zip(note_types, selling_prices, buying_prices):
             yield DashengItem (
