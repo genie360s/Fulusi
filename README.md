@@ -45,7 +45,7 @@ source .venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
-5. Instantiate the sqlite3 database
+5. Create the user table
 ```bash
 flask --app flaskr init-db
 ```
