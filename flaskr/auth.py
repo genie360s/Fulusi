@@ -1,19 +1,17 @@
 # documentation for this file | https://flask.palletsprojects.com/en/3.0.x/tutorial/views/
-#authentication blueprint
+# authentication blueprint
 import functools
-
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
-
 from werkzeug.security import check_password_hash, generate_password_hash
-
 from flaskr.db import get_db
+import psycopg
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-#views
-#account register view
+# views
+# account register view
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
@@ -38,12 +36,13 @@ def register():
 
         if error is None:
             try:
-                db.execute(
-                    "INSERT INTO user (fullname, username, email, password, terms_and_conditions) VALUES (?, ?, ?, ?, ?)",
-                    (fullname, username, email, generate_password_hash(password), terms_and_conditions),
-                )
+                with db.cursor() as cursor:
+                    cursor.execute(
+                        "INSERT INTO \"user\" (fullname, username, email, password, terms_and_conditions) VALUES (%s, %s, %s, %s, %s)",
+                        (fullname, username, email, generate_password_hash(password), terms_and_conditions)
+                    )
                 db.commit()
-            except db.IntegrityError:
+            except psycopg.errors.UniqueViolation:
                 error = f"User {username} is already registered."
             else:
                 return redirect(url_for("auth.login"))
@@ -52,7 +51,7 @@ def register():
 
     return render_template('auth/register.html')
 
-#account login view
+# account login view
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
@@ -60,21 +59,22 @@ def login():
         password = request.form['password']
         db = get_db()
         error = None
-        user = db.execute(
-            'SELECT * FROM user WHERE email = ?', (email,)
-        ).fetchone()
-        
+        user = None
+
+        with db.cursor() as cursor:
+            cursor.execute(
+                'SELECT * FROM "user" WHERE email = %s', (email,)
+            )
+            user = cursor.fetchone()
 
         if user is None:
             error = 'Incorrect email address.'
-        elif not check_password_hash(user['password'], password):
+        elif not check_password_hash(user[4], password):  # Assuming password is the 5th field
             error = 'Incorrect password.'
 
         if error is None:
             session.clear()
-            session['user_id'] = user['id']
-            print("yes")
-            print(session['user_id'])
+            session['user_id'] = user[0]  # Assuming id is the 1st field
             return redirect(url_for('dashboard.dashboard'))
 
         flash(error)
@@ -88,16 +88,18 @@ def load_logged_in_user():
     if user_id is None:
         g.user = None
     else:
-        g.user = get_db().execute(
-            'SELECT * FROM user WHERE id = ?', (user_id,)
-        ).fetchone()
+        with get_db().cursor() as cursor:
+            cursor.execute(
+                'SELECT * FROM "user" WHERE id = %s', (user_id,)
+            )
+            g.user = cursor.fetchone()
 
 @bp.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('auth.login'))
 
-#login decorator | won't allow a user to access a view if they are not logged in
+# login decorator | won't allow a user to access a view if they are not logged in
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
