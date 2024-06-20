@@ -32,7 +32,7 @@ According to the recent Tanzania CENSUS survey , 1% of Tanzanians invest in the 
 
 1. Clone the repository
 ```bash
-git clone https://github.com/genie360s/FlaskTemplate
+git clone https://github.com/genie360s/findailyupdates
 ```
 2. Create a virtual environment
 ```bash
