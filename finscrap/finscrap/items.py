@@ -92,3 +92,20 @@ class UttAmisItem(scrapy.Item):
     data['net_asset_value_per_unit_tzs'] = scrapy.Field()
     data['sale_price_per_unit_tzs'] = scrapy.Field()
     data['purchase_price_per_unit_tzs'] = scrapy.Field()
+
+class CorporateBondsItem(scrapy.Item):
+    issuer = scrapy.Field()
+    issued_date = scrapy.Field()
+    coupon_rate = scrapy.Field()
+    issued_amount = scrapy.Field()
+    term_years = scrapy.Field()
+    maturity_date = scrapy.Field()
+
+class GovernmentBondsItem(scrapy.Item):
+    issuer = scrapy.Field()
+    issued_date = scrapy.Field()
+    maturity_date = scrapy.Field()
+    coupon_rate = scrapy.Field()
+    issued_amount = scrapy.Field()
+    term_years = scrapy.Field()
+    

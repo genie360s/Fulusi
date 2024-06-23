@@ -214,6 +214,34 @@ class FinscrapPipeline:
             )
         """)
 
+        #government bonds table
+        self.cursor.execute("""
+            CREATE TABLE IF NOT EXISTS government_bonds (
+                id SERIAL PRIMARY KEY,
+                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                issuer VARCHAR(255) NOT NULL,
+                issued_date VARCHAR(255) NOT NULL,
+                maturity_date VARCHAR(255) NOT NULL,
+                coupon_rate FLOAT NOT NULL,
+                issued_amount FLOAT NOT NULL,
+                term_years INT NOT NULL
+            )
+        """)
+
+        #corporate bonds table
+        self.cursor.execute("""
+            CREATE TABLE IF NOT EXISTS corporate_bonds (
+                id SERIAL PRIMARY KEY,
+                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                issuer VARCHAR(255) NOT NULL,
+                issued_date VARCHAR(255) NOT NULL,
+                maturity_date VARCHAR(255) NOT NULL,
+                coupon_rate FLOAT NOT NULL,
+                issued_amount FLOAT NOT NULL,
+                term_years INT NOT NULL
+            )
+        """)
+
         self.connection.commit()
 
     def close_spider(self, spider):
@@ -296,6 +324,16 @@ class FinscrapPipeline:
                     INSERT INTO uttamis_fund (fund_name, fund_date, net_asset_value_tzs, outstanding_number_of_units, nav_per_unit_tzs, sales_price_per_unit_tzs, repurchase_price_per_unit_tzs)
                     VALUES (%s, %s, %s, %s, %s, %s, %s)
                 """, (item["fund_name"], item["fund_date"], item["data"]["net_asset_value_tzs"], item["data"]["outstanding_number_of_units_tzs"], item["data"]["net_asset_value_per_unit_tzs"], item["data"]["sale_price_per_unit_tzs"], item["data"]["purchase_price_per_unit_tzs"]))
+            elif spider.name == "government_bonds":
+                self.cursor.execute("""
+                    INSERT INTO government_bonds (issuer, issued_date, maturity_date, coupon_rate, issued_amount, term_years)
+                    VALUES (%s, %s, %s, %s, %s, %s)
+                """, (item["issuer"], item["issued_date"], item["maturity_date"], item["coupon_rate"], item["issued_amount"], item["term_years"]))
+            elif spider.name == "corporate_bonds":
+                self.cursor.execute("""
+                    INSERT INTO corporate_bonds (issuer, issued_date, maturity_date, coupon_rate, issued_amount, term_years)
+                    VALUES (%s, %s, %s, %s, %s, %s)
+                """, (item["issuer"], item["issued_date"], item["maturity_date"], item["coupon_rate"], item["issued_amount"], item["term_years"]))
             # Commit the transaction
             self.connection.commit()
             logging.info(f"Item successfully processed: {item}")

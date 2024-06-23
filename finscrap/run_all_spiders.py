@@ -2,7 +2,7 @@ import os
 import subprocess
 
 # Define spider names
-spiders = [ 'amana', 'azania', 'baroda', 'boi', 'bot', 'dasheng', 'dcb', 'habib', 'icb', 'mkombozi', 'nmb', 'utt_amis', 'faida']
+spiders = [ 'amana', 'azania', 'baroda', 'boi', 'bot', 'dasheng', 'dcb', 'habib', 'icb', 'mkombozi', 'nmb', 'utt_amis', 'faida', 'corporate_bonds', 'government_bonds']
 
 # Loop through each spider
 for spider in spiders:
