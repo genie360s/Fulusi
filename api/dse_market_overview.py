@@ -7,19 +7,19 @@ import os
 
 load_dotenv()
 
-gainers_losers_api_url = os.getenv("DSE_MARKET_OVERVIEW_URL")
+market_overview_api_url = os.getenv("DSE_MARKET_OVERVIEW_URL")
 
 # API request to get the gainers and losers
-response_gainers_losers = requests.get(gainers_losers_api_url)
+response_market_overview = requests.get(market_overview_api_url)
 
 # Check if the request was successful
-if response_gainers_losers.status_code == 200:
-    gainers_losers_data = response_gainers_losers.json()
-    del gainers_losers_data['success']
+if response_market_overview.status_code == 200:
+    market_overview_data = response_market_overview.json()
+    del market_overview_data['success']
 
 else:
     print("Error: Could not retrieve data from the API")
-    print(response_gainers_losers.text)
+    print(response_market_overview.text)
     exit()
 
 # Connect to the PostgreSQL database
@@ -45,14 +45,14 @@ def check_and_create_table(cursor):
         SELECT EXISTS (
             SELECT FROM information_schema.tables 
             WHERE table_schema = 'public'
-            AND table_name = 'dse_gainers_losers'
+            AND table_name = 'dse_market_overview'
         );
     """
     cursor.execute(table_check_query)
     table_exists = cursor.fetchone()['exists']
     if not table_exists:
         create_table_query = """
-            CREATE TABLE dse_gainers_losers (
+            CREATE TABLE dse_market_overview (
                 id SERIAL PRIMARY KEY,
                 volume FLOAT NOT NULL,
                 market_cap_aggregate FLOAT NOT NULL,
@@ -70,17 +70,17 @@ check_and_create_table(cursor)
 # Insert the data into the database
 try:
     insert_query = """
-        INSERT INTO dse_gainers_losers (volume, market_cap_aggregate, turn_over, deals, of_date)
+        INSERT INTO dse_market_overview (volume, market_cap_aggregate, turn_over, deals, of_date)
         VALUES (%s, %s, %s, %s, %s);
     """
     
     # Format data for insertion
     formatted_data = (
-        float(gainers_losers_data['volume'].replace(',', '')),
-        float(gainers_losers_data['m_cap_aggregate'].replace(',', '')),
-        float(gainers_losers_data['turn_over'].replace(',', '')),
-        int(gainers_losers_data['deals']),
-        gainers_losers_data['of_date'].split('T')[0]  # Assuming the date is already in ISO format
+        float(market_overview_data['volume'].replace(',', '')),
+        float(market_overview_data['m_cap_aggregate'].replace(',', '')),
+        float(market_overview_data['turn_over'].replace(',', '')),
+        int(market_overview_data['deals']),
+        market_overview_data['of_date'].split('T')[0]  # Assuming the date is already in ISO format
     )
     
     # Execute the insertion query
