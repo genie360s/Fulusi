@@ -46,6 +46,7 @@ source .venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
+@todo: db setup
 5. Create the user table
 ```bash
 flask --app flaskr init-db
