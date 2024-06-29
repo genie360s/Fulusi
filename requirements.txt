@@ -13,6 +13,7 @@ exceptiongroup==1.2.0
 filelock==3.13.4
 Flask==3.0.3
 -e git+https://github.com/genie360s/FlaskTemplate.git@c22eae532e3d4c413d29237902d00b3b8690e457#egg=flaskr
+greenlet==3.0.3
 hyperlink==21.0.0
 idna==3.7
 incremental==22.10.0
@@ -28,6 +29,9 @@ packaging==24.0
 parsel==1.9.1
 pluggy==1.4.0
 Protego==0.3.1
+psycopg==3.1.19
+psycopg-binary==3.1.19
+psycopg-pool==3.2.2
 pyasn1==0.6.0
 pyasn1_modules==0.4.0
 pycparser==2.22
@@ -44,7 +48,9 @@ sarufi==0.1.9
 Scrapy==2.11.1
 scrapy-splash==0.9.0
 service-identity==24.1.0
+setuptools==70.0.0
 six==1.16.0
+SQLAlchemy==2.0.30
 tldextract==5.1.2
 tomli==2.0.1
 Twisted==24.3.0
