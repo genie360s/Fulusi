@@ -1,16 +1,16 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from config import Config
+from .config import Config
 
 db = SQLAlchemy()
 
 def create_app():
-    app = Flask(__name__)
-    app.config.from_object(Config)
-    db.init_app(app)
+    api_app = Flask(__name__)
+    api_app.config.from_object(Config)
+    db.init_app(api_app)
 
-    with app.app_context():
-        from . import routes
+    with api_app.app_context():
+        from . import routes, models
         db.create_all()
 
-    return app
+    return api_app
