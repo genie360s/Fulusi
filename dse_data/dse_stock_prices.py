@@ -8,7 +8,7 @@ api_url = os.getenv("DSE_STOCK_PRICES_API_URL")
 
 #api request to get the data
 
-response = requests.get(api_url)
+response = requests.get(api_url, verify=False)
 
 #check if the request was successful
 if response.status_code == 200:
@@ -53,7 +53,8 @@ def check_and_create_table(cursor):
                 id INTEGER PRIMARY KEY,
                 company VARCHAR NOT NULL,
                 price FLOAT NOT NULL,
-                change FLOAT NOT NULL
+                change FLOAT NOT NULL,
+                created_at DATE DEFAULT CURRENT_DATE 
             );
         """
         cursor.execute(create_table_query)
