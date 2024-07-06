@@ -37,7 +37,8 @@ class FinscrapPipeline:
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
 
@@ -45,11 +46,11 @@ class FinscrapPipeline:
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS azania_bank (
                 id SERIAL PRIMARY KEY,
-                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
 
@@ -57,11 +58,11 @@ class FinscrapPipeline:
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS baroda_bank (
                 id SERIAL PRIMARY KEY,
-                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
 
@@ -69,11 +70,11 @@ class FinscrapPipeline:
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS bank_of_india (
                 id SERIAL PRIMARY KEY,
-                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
 
@@ -81,11 +82,11 @@ class FinscrapPipeline:
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS bank_of_tanzania (
                 id SERIAL PRIMARY KEY,
-                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
 
@@ -93,22 +94,22 @@ class FinscrapPipeline:
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS dasheng_bank (
                 id SERIAL PRIMARY KEY,
-                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
         #bank of baroda table
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS bank_of_baroda (
                 id SERIAL PRIMARY KEY,
-                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
 
@@ -116,11 +117,11 @@ class FinscrapPipeline:
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS tanzania_commercial_bank (
                 id SERIAL PRIMARY KEY,
-                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
 
@@ -128,11 +129,11 @@ class FinscrapPipeline:
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS dcb_commercial_bank (
                 id SERIAL PRIMARY KEY,
-                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
 
@@ -140,11 +141,11 @@ class FinscrapPipeline:
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS habib_african_bank (
                 id SERIAL PRIMARY KEY,
-                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
 
@@ -152,11 +153,11 @@ class FinscrapPipeline:
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS mkombozi_bank (
                 id SERIAL PRIMARY KEY,
-                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
 
@@ -164,11 +165,11 @@ class FinscrapPipeline:
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS national_microfinance_bank (
                 id SERIAL PRIMARY KEY,
-                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
 
@@ -176,11 +177,11 @@ class FinscrapPipeline:
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS tanzania_commercial_bank (
                 id SERIAL PRIMARY KEY,
-                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
 
@@ -188,14 +189,14 @@ class FinscrapPipeline:
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS international_commercial_bank (
                 id SERIAL PRIMARY KEY,
-                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 currency VARCHAR(255) NOT NULL,
                 buying_price_tt_od FLOAT NOT NULL,
                 selling_price_tt_od FLOAT NOT NULL,
                 selling_fc_notes FLOAT NOT NULL,
                 buying_fc_notes_less_50_euro_usd FLOAT NOT NULL,
                 buying_fc_notes_more_50_euro_usd FLOAT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
 
@@ -203,14 +204,14 @@ class FinscrapPipeline:
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS faida_fund (
                 id SERIAL PRIMARY KEY,
-                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 date VARCHAR(255) NOT NULL,
                 net_asset_value_tzs FLOAT NOT NULL,
                 outstanding_number_of_units FLOAT NOT NULL,
                 nav_per_unit_tzs FLOAT NOT NULL,
                 sales_price_per_unit_tzs FLOAT NOT NULL,
                 repurchase_price_per_unit_tzs FLOAT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
 
@@ -218,7 +219,6 @@ class FinscrapPipeline:
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS uttamis_fund (
                 id SERIAL PRIMARY KEY,
-                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 fund_name VARCHAR(255) NOT NULL,
                 fund_date VARCHAR(255) NOT NULL,
                 net_asset_value_tzs FLOAT NOT NULL,
@@ -226,7 +226,8 @@ class FinscrapPipeline:
                 nav_per_unit_tzs FLOAT NOT NULL,
                 sales_price_per_unit_tzs FLOAT NOT NULL,
                 repurchase_price_per_unit_tzs FLOAT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
 
@@ -234,14 +235,14 @@ class FinscrapPipeline:
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS government_bonds (
                 id SERIAL PRIMARY KEY,
-                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 issuer VARCHAR(255) NOT NULL,
                 issued_date VARCHAR(255) NOT NULL,
                 maturity_date VARCHAR(255) NOT NULL,
                 coupon_rate FLOAT NOT NULL,
                 issued_amount FLOAT NOT NULL,
                 term_years INT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
 
@@ -249,14 +250,14 @@ class FinscrapPipeline:
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS corporate_bonds (
                 id SERIAL PRIMARY KEY,
-                creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 issuer VARCHAR(255) NOT NULL,
                 issued_date VARCHAR(255) NOT NULL,
                 maturity_date VARCHAR(255) NOT NULL,
                 coupon_rate FLOAT NOT NULL,
                 issued_amount FLOAT NOT NULL,
                 term_years INT NOT NULL,
-                created_at DATE DEFAULT CURRENT_DATE
+                created_date DATE DEFAULT CURRENT_DATE,
+                created_time TIME DEFAULT LOCALTIME
             )
         """)
 
