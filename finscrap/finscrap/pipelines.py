@@ -37,8 +37,7 @@ class FinscrapPipeline:
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
@@ -49,8 +48,7 @@ class FinscrapPipeline:
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
@@ -61,8 +59,7 @@ class FinscrapPipeline:
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
@@ -73,8 +70,7 @@ class FinscrapPipeline:
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
@@ -85,8 +81,7 @@ class FinscrapPipeline:
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
@@ -97,8 +92,7 @@ class FinscrapPipeline:
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
         #bank of baroda table
@@ -108,8 +102,7 @@ class FinscrapPipeline:
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
@@ -120,8 +113,7 @@ class FinscrapPipeline:
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
@@ -132,8 +124,7 @@ class FinscrapPipeline:
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
@@ -144,8 +135,7 @@ class FinscrapPipeline:
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
@@ -156,8 +146,7 @@ class FinscrapPipeline:
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
@@ -168,8 +157,7 @@ class FinscrapPipeline:
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
@@ -180,8 +168,7 @@ class FinscrapPipeline:
                 currency VARCHAR(255) NOT NULL,
                 buying_price FLOAT NOT NULL,
                 selling_price FLOAT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
@@ -195,8 +182,7 @@ class FinscrapPipeline:
                 selling_fc_notes FLOAT NOT NULL,
                 buying_fc_notes_less_50_euro_usd FLOAT NOT NULL,
                 buying_fc_notes_more_50_euro_usd FLOAT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
@@ -210,8 +196,7 @@ class FinscrapPipeline:
                 nav_per_unit_tzs FLOAT NOT NULL,
                 sales_price_per_unit_tzs FLOAT NOT NULL,
                 repurchase_price_per_unit_tzs FLOAT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
@@ -226,8 +211,7 @@ class FinscrapPipeline:
                 nav_per_unit_tzs FLOAT NOT NULL,
                 sales_price_per_unit_tzs FLOAT NOT NULL,
                 repurchase_price_per_unit_tzs FLOAT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
@@ -241,8 +225,7 @@ class FinscrapPipeline:
                 coupon_rate FLOAT NOT NULL,
                 issued_amount FLOAT NOT NULL,
                 term_years INT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
@@ -256,8 +239,7 @@ class FinscrapPipeline:
                 coupon_rate FLOAT NOT NULL,
                 issued_amount FLOAT NOT NULL,
                 term_years INT NOT NULL,
-                created_date DATE DEFAULT CURRENT_DATE,
-                created_time TIME DEFAULT LOCALTIME
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
