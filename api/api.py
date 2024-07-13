@@ -208,7 +208,7 @@ def get_baroda_bank_latest_date():
         cursor = connection.cursor()
 
         # Query to get the latest date
-        cursor.execute('SELECT MAX(DATE(created_at)) FROM baroda_bank;')
+        cursor.execute('SELECT MAX(DATE(created_at)) FROM bank_of_baroda;')
         latest_date_row = cursor.fetchone()
         latest_date = latest_date_row[0]
 
@@ -217,7 +217,7 @@ def get_baroda_bank_latest_date():
 
         # Query to get entries for the latest date
         query = '''
-            SELECT * FROM baroda_bank
+            SELECT * FROM bank_of_baroda
             WHERE DATE(created_at) = %s;
         '''
         cursor.execute(query, (latest_date, ))
@@ -252,6 +252,40 @@ def get_bank_of_india_latest_date():
         # Query to get entries for the latest date
         query = '''
             SELECT * FROM bank_of_india
+            WHERE DATE(created_at) = %s;
+        '''
+        cursor.execute(query, (latest_date, ))
+        rows = cursor.fetchall()
+
+        if not rows:
+            return jsonify({"error": "No data found for the latest date"}), 404
+
+        column_names = [desc[0] for desc in cursor.description]
+        result = [dict(zip(column_names, row)) for row in rows]
+        cursor.close()
+        connection.close()
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
+#amana bank latest api
+@app.route('/api/v1/amana_bank/latest_date', methods=['GET'])
+def get_amana_bank_latest_date():
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor()
+
+        # Query to get the latest date
+        cursor.execute('SELECT MAX(DATE(created_at)) FROM amana_bank;')
+        latest_date_row = cursor.fetchone()
+        latest_date = latest_date_row[0]
+
+        if not latest_date:
+            return jsonify({"error": "No data available"}), 404
+
+        # Query to get entries for the latest date
+        query = '''
+            SELECT * FROM amana_bank
             WHERE DATE(created_at) = %s;
         '''
         cursor.execute(query, (latest_date, ))
