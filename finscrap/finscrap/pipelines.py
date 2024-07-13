@@ -52,16 +52,6 @@ class FinscrapPipeline:
             )
         """)
 
-        #baroda bank table
-        self.cursor.execute("""
-            CREATE TABLE IF NOT EXISTS baroda_bank (
-                id SERIAL PRIMARY KEY,
-                currency VARCHAR(255) NOT NULL,
-                buying_price FLOAT NOT NULL,
-                selling_price FLOAT NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        """)
 
         #bank of india table
         self.cursor.execute("""
