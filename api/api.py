@@ -505,5 +505,39 @@ def get_mkombozi_bank_latest_date():
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)})
+
+#national microfinance bank latest forex rate api
+@app.route('/api/v1/national_microfinance_bank/latest_date', methods=['GET'])
+def get_national_microfinance_bank_latest_date():
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor()
+
+        # Query to get the latest date
+        cursor.execute('SELECT MAX(DATE(created_at)) FROM national_microfinance_bank;')
+        latest_date_row = cursor.fetchone()
+        latest_date = latest_date_row[0]
+
+        if not latest_date:
+            return jsonify({"error": "No data available"}), 404
+
+        # Query to get entries for the latest date
+        query = '''
+            SELECT * FROM national_microfinance_bank
+            WHERE DATE(created_at) = %s;
+        '''
+        cursor.execute(query, (latest_date, ))
+        rows = cursor.fetchall()
+
+        if not rows:
+            return jsonify({"error": "No data found for the latest date"}), 404
+
+        column_names = [desc[0] for desc in cursor.description]
+        result = [dict(zip(column_names, row)) for row in rows]
+        cursor.close()
+        connection.close()
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"error": str(e)})
 if __name__ == '__main__':
     app.run(debug=True)
