@@ -641,5 +641,39 @@ def get_faida_fund_latest_valuation():
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)})
+
+# uttamis fund table latest valuation api
+@app.route('/api/v1/uttamis_fund/latest_date', methods=['GET'])
+def get_uttamis_fund_latest_valuation():
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor()
+
+        # Query to get the latest date
+        cursor.execute('SELECT MAX(DATE(created_at)) FROM uttamis_fund;')
+        latest_date_row = cursor.fetchone()
+        latest_date = latest_date_row[0]
+
+        if not latest_date:
+            return jsonify({"error": "No data available"}), 404
+
+        # Query to get entries for the latest date
+        query = '''
+            SELECT * FROM uttamis_fund
+            WHERE DATE(created_at) = %s;
+        '''
+        cursor.execute(query, (latest_date, ))
+        rows = cursor.fetchall()
+
+        if not rows:
+            return jsonify({"error": "No data found for the latest date"}), 404
+
+        column_names = [desc[0] for desc in cursor.description]
+        result = [dict(zip(column_names, row)) for row in rows]
+        cursor.close()
+        connection.close()
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"error": str(e)})
 if __name__ == '__main__':
     app.run(debug=True)
