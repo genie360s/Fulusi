@@ -767,7 +767,7 @@ def get_uttamis_fund_latest_valuation():
         rows = cursor.fetchall()
 
         if not rows:
-            return jsonify({"error": "No data found for the latest date"}), 404
+            return jsonify({"error": "No data found for the latest entry"}), 404
 
         column_names = [desc[0] for desc in cursor.description]
         result = [dict(zip(column_names, row)) for row in rows]
