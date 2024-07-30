@@ -677,7 +677,7 @@ def get_uttamis_fund_latest_valuation():
         return jsonify({"error": str(e)})
 
 #government bonds latest entry
-@app.route('/api/v1/government_bonds/latest_date', methods=['GET'])
+@app.route('/api/v1/government_bonds/latest_entry', methods=['GET'])
 def get_government_bonds():
     try:
         connection = get_db_connection()
@@ -711,7 +711,7 @@ def get_government_bonds():
         return jsonify({"error": str(e)})
 
 #corporate bonds latest entry 
-@app.route('/api/v1/corporate_bonds/latest_date', methods=['GET'])
+@app.route('/api/v1/corporate_bonds/latest_entry', methods=['GET'])
 def get_uttamis_fund_latest_valuation():
     try:
         connection = get_db_connection()
