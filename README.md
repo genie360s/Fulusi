@@ -12,7 +12,7 @@ According to the recent Tanzania CENSUS survey , 1% of Tanzanians invest in the 
 - [x] Implementing User Authentication
 - [x] visualizing data collected in table format
 - [x] Design database to store all scrapped data
-- [ ] Design APIs to retrieve data from the database
+- [x] Design APIs to retrieve data from the database
 - [ ] Visualize growth across time , by collecting and storing data in a database.
 - [ ] Able to compare forex prices in banks and suggest the cheapest bank to do exchange.
 - [ ] Predict how the investment instruments will perform though machine learning models.
