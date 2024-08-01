@@ -20,17 +20,19 @@ def dashboard():
     # dashboard logic goes in here
     if request.method == 'POST':
         bank_name = request.form['bank_name']
+        print(bank_name)
         error = None
 
         if not bank_name:
             error = 'Bank name is required.'
-
-        api_url = f"http://127.0.0.1:5000/findaily/api/{bank_name}"
+        base_bank_api_url = os.getenv("BASE_BANK_API_URL")
+        bank_api_url = f"{base_bank_api_url}{bank_name}/latest_date"
         if  error is None:
             try :
-                response = requests.get(api_url)
+                response = requests.get(bank_api_url)
                 if response.status_code == 200:
                     bank_forex_data = response.json()
+                    print(bank_forex_data)
                     return render_template('dashboard/dashboard.html', bank_forex_data=bank_forex_data)
             except Timeout:
                 # Handle timeout error
@@ -58,7 +60,7 @@ def mutual_funds():
         if not fund_name:
             error = 'Fund name is required.'
 
-        api_url = f"http://127.0.0.1:5000/findaily/api/{fund_name}"
+        api_url = f"http://127.0.0.1:5000/{fund_name}"
 
         if  error is None:
             try :
@@ -93,13 +95,12 @@ def stock_markets():
 
         if  stock_market == "dse":
            
-            api = os.getenv("DSE_API_URL")
+            dse_api = os.getenv("DSE_STOCK_PRICES_API_URL")
             
-            
-            api_url = f"{api}"
 
             try :
-                response = requests.get(api_url)
+                response = requests.get(dse_api,  verify=False)
+                print(response.json)
                 if response.status_code == 200:
                     stock_data = response.json()
                     stock_data = stock_data['data']

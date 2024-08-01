@@ -10,18 +10,20 @@
                 <div class="col-8  ml-4">
                     <select class="form-select" aria-label="select bank" name="bank_name">
                         <option selected>Choose a Bank | Chagua Benki</option>
-                        <option value="amana">Amana Bank</option>
-                        <option value="azania">Azania Bank</option>
-                        <option value="baroda">Baroda Bank</option>
-                        <option value="boi">Bank Of India ( BOI )</option>
-                        <option value="bot">Bank Of Tanzania ( BOT )</option>
-                        <option value="dasheng">Dasheng Bank</option>
-                        <option value="dcb">DCB Bank</option>
+                        <option value="amana_bank">Amana Bank</option>
+                        <option value="azania_bank">Azania Bank</option>
+                        <option value="baroda_bank">Baroda Bank</option>
+                        <option value="bank_of_india">Bank Of India ( BOI )</option>
+                        <option value="bank_of_tanzania">Bank Of Tanzania ( BOT )</option>
+                        <option value="dasheng_bank">Dasheng Bank</option>
+                        <option value="tanzania_commercial_bank">Tanzania Commercial Bank</option>
+                        <option value="dcb_bank">DCB Bank</option>
                         <option value="exim">EXIM Bank</option>
-                        <option value="habib">Habib Bank</option>
-                        <option value="icb">ICB Bank</option>
-                        <option value="mkombozi">Mkombozi Bank</option>
-                        <option value="nmb">National Microfinance Bank ( NMB ) </option>
+                        <option value="habib_africa_bank">Habib Bank</option>
+                        <!-- @todo: icb has a different structure (special case) -->
+                        <!-- <option value="international_commercial_bank">ICB Bank</option> -->
+                        <option value="mkombozi_bank">Mkombozi Bank</option>
+                        <option value="national_microfinance_bank">National Microfinance Bank ( NMB ) </option>
                       </select>
                 </div>
             <div class="col-4 ">
@@ -50,8 +52,8 @@
                 <tr>
                     <th scope="row">{{ loop.index }}</th>
                     <td>{{ currency.currency }}</td>
-                    <td>{{ currency.selling }}</td>
-                    <td>{{ currency.buying }}</td>
+                    <td>{{ currency.selling_price }}</td>
+                    <td>{{ currency.buying_price }}</td>
                 </tr>
                 {% endfor %}
         </table>
