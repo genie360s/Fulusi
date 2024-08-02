@@ -16,23 +16,9 @@ def get_db_connection():
     )
     return conn
 
-@app.route('/api/v1/dse_stock_prices', methods=['GET'])
-def get_data():
-    try:
-        connection = get_db_connection()
-        cursor = connection.cursor()
-        cursor.execute('SELECT * FROM dse_stock_prices;')
-        rows = cursor.fetchall()
-        column_names = [desc[0] for desc in cursor.description]
-        result = [dict(zip(column_names, row)) for row in rows]
-        cursor.close()
-        connection.close()
-        return jsonify(result)
-    except Exception as e:
-        return jsonify({"error": str(e)})
-    
+
 @app.route('/api/v1/dse_stock_prices/latest_date', methods=['GET'])
-def get_entries_latest_date():
+def get_stock_prices_latest_date():
     try:
         connection = get_db_connection()
         cursor = connection.cursor()
@@ -337,7 +323,7 @@ def get_bank_of_tanzania_latest_date():
         return jsonify({"error": str(e)})
     
 #dasheng latest forex rate api
-@app.route('/api/v1/dasheng/latest_date', methods=['GET'])
+@app.route('/api/v1/dasheng_bank/latest_date', methods=['GET'])
 def get_dasheng_latest_date():
     try:
         connection = get_db_connection()
@@ -405,7 +391,7 @@ def get_tanzania_commercial_bank_latest_date():
         return jsonify({"error": str(e)})
     
 #dcb latest forex rate api
-@app.route('/api/v1/dcb/latest_date', methods=['GET'])
+@app.route('/api/v1/dcb_bank/latest_date', methods=['GET'])
 def get_dcb_latest_date():
     try:
         connection = get_db_connection()
@@ -446,7 +432,7 @@ def get_habib_africa_bank_latest_date():
         cursor = connection.cursor()
 
         # Query to get the latest date
-        cursor.execute('SELECT MAX(DATE(created_at)) FROM habib_africa_bank;')
+        cursor.execute('SELECT MAX(DATE(created_at)) FROM habib_african_bank;')
         latest_date_row = cursor.fetchone()
         latest_date = latest_date_row[0]
 
@@ -455,7 +441,7 @@ def get_habib_africa_bank_latest_date():
 
         # Query to get entries for the latest date
         query = '''
-            SELECT * FROM habib_africa_bank
+            SELECT * FROM habib_african_bank
             WHERE DATE(created_at) = %s;
         '''
         cursor.execute(query, (latest_date, ))
@@ -628,74 +614,6 @@ def get_uttamis_fund_latest_valuation():
         # Query to get entries for the latest date
         query = '''
             SELECT * FROM uttamis_fund
-            WHERE DATE(created_at) = %s;
-        '''
-        cursor.execute(query, (latest_date, ))
-        rows = cursor.fetchall()
-
-        if not rows:
-            return jsonify({"error": "No data found for the latest date"}), 404
-
-        column_names = [desc[0] for desc in cursor.description]
-        result = [dict(zip(column_names, row)) for row in rows]
-        cursor.close()
-        connection.close()
-        return jsonify(result)
-    except Exception as e:
-        return jsonify({"error": str(e)})
-
-#government bonds latest entry
-@app.route('/api/v1/government_bonds/latest_entry', methods=['GET'])
-def get_government_bonds():
-    try:
-        connection = get_db_connection()
-        cursor = connection.cursor()
-
-        # Query to get the latest date
-        cursor.execute('SELECT MAX(DATE(created_at)) FROM government_bonds;')
-        latest_date_row = cursor.fetchone()
-        latest_date = latest_date_row[0]
-
-        if not latest_date:
-            return jsonify({"error": "No data available"}), 404
-
-        # Query to get entries for the latest date
-        query = '''
-            SELECT * FROM government_bonds
-            WHERE DATE(created_at) = %s;
-        '''
-        cursor.execute(query, (latest_date, ))
-        rows = cursor.fetchall()
-
-        if not rows:
-            return jsonify({"error": "No data found for the latest date"}), 404
-
-        column_names = [desc[0] for desc in cursor.description]
-        result = [dict(zip(column_names, row)) for row in rows]
-        cursor.close()
-        connection.close()
-        return jsonify(result)
-    except Exception as e:
-        return jsonify({"error": str(e)})
-
-#corporate bonds latest entry 
-@app.route('/api/v1/corporate_bonds/latest_entry', methods=['GET'])
-def get_corporate_bonds_latest_valuation():
-    try:
-        connection = get_db_connection()
-        cursor = connection.cursor()
-
-        # Query to get the latest date
-        cursor.execute('SELECT MAX(DATE(created_at)) FROM corporate_bonds;')
-        latest_date_row = cursor.fetchone()
-        latest_date = latest_date_row[0]
-
-        if not latest_date:
-            return jsonify({"error": "No data available"}), 404
-
-        # Query to get entries for the latest date
-        query = '''
-            SELECT * FROM corporate_bonds
             WHERE DATE(created_at) = %s;
         '''
         cursor.execute(query, (latest_date, ))
