@@ -25,8 +25,8 @@ def dashboard():
 
         if not bank_name:
             error = 'Bank name is required.'
-        base_bank_api_url = os.getenv("BASE_BANK_API_URL")
-        bank_api_url = f"{base_bank_api_url}{bank_name}/latest_date"
+        base_api_url = os.getenv("BASE_API_URL")
+        bank_api_url = f"{base_api_url}{bank_name}/latest_date"
         if  error is None:
             try :
                 response = requests.get(bank_api_url)
@@ -55,18 +55,21 @@ def mutual_funds():
     # mutual funds logic goes in here
     if request.method == 'POST':
         fund_name = request.form['fund_name']
+        print(fund_name)
         error = None
 
         if not fund_name:
             error = 'Fund name is required.'
 
-        api_url = f"http://127.0.0.1:5000/{fund_name}"
+        base_api_url = os.getenv("BASE_API_URL")
+        fund_api_url = f"{base_api_url}{fund_name}/latest_date"
 
         if  error is None:
             try :
-                response = requests.get(api_url)
+                response = requests.get(fund_api_url)
                 if response.status_code == 200:
                     fund_data = response.json()
+                    print(fund_data)
                     return render_template('dashboard/mutual_funds.html', fund_data=fund_data)
             except Timeout:
                 # Handle timeout error
@@ -116,3 +119,38 @@ def stock_markets():
                 return render_template('error.html', message="Failed to fetch data from the API")
         flash(error)
     return render_template('dashboard/stock_markets.html')
+
+@bp.route('/bonds', methods=('GET', 'POST'))
+@login_required
+def bonds():
+    # bond  logic goes in here
+    if request.method == 'POST':
+        bond_type = request.form['bond_type']
+        print(bond_type)
+        error = None
+
+        if not bond_type:
+            error = 'Bond type is required.'
+
+        base_api_url = os.getenv("BASE_API_URL")
+        bond_api_url = f"{base_api_url}{bond_type}/latest_date"
+
+        if  error is None:
+            try :
+                response = requests.get(bond_api_url)
+                if response.status_code == 200:
+                    bond_data = response.json()
+                    print(bond_data)
+                    return render_template('dashboard/bonds.html', bond_data=bond_data)
+            except Timeout:
+                # Handle timeout error
+                return render_template('error.html', message="API request timed out. Please try again later.")
+            except Exception as e:
+                # Handle other exceptions
+                return render_template('error.html', message=f"Failed to fetch data from the API: {str(e)}")
+            else:
+                # Handle other errors
+                return render_template('error.html', message="Failed to fetch data from the API")
+        
+        flash(error)
+    return render_template('dashboard/bonds.html')

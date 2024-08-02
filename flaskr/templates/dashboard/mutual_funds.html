@@ -8,9 +8,10 @@
         <div class="row">
             
                 <div class="col-8  ml-4">
-                    <select class="form-select" aria-label="select bank" name="fund_name">
+                    <select class="form-select" aria-label="select a mutual fund" name="fund_name">
                         <option selected>Choose a Mutual Fund | Chagua Mfuko wa Uwekezaji</option>
-                        <option value="utt_amis">UTT AMIS</option>
+                        <option value="uttamis_fund">UTT AMIS</option>
+                        <option value="faida_fund">FAIDA FUND</option>
                       </select>
                 </div>
             <div class="col-4 ">
@@ -42,11 +43,11 @@
                 <tr>
                     <th scope="row">{{ loop.index }}</th>
                     <td>{{ fund.fund_name }}</td>
-                    <td>{{ fund.data["Net Asset Value (Tsh)"] }}</td>
-                    <td>{{ fund.data["Outstanding Number of Units (Tsh)"] }}</td>
-                    <td>{{ fund.data["Net Asset Value Per Unit (Tsh)"] }}</td>
-                    <td>{{ fund.data["Sale Price Per Unit (Tsh)"] }}</td>
-                    <td>{{ fund.data["Purchase Price Per Unit (Tsh)"] }}</td>
+                    <td>{{ fund.net_asset_value_tzs }}</td>
+                    <td>{{ fund.outstanding_number_of_units }}</td>
+                    <td>{{ fund.nav_per_unit_tzs }}</td>
+                    <td>{{ fund.sales_price_per_unit_tzs }}</td>
+                    <td>{{ fund.repurchase_price_per_unit_tzs }}</td>
                 </tr>
                 {% endfor %}
         </table>
