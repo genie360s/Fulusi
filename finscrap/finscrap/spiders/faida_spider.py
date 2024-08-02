@@ -12,7 +12,8 @@ class FaidaSpider(scrapy.Spider):
         current_fund_data = table_rows.css('td::text').getall()
         
         yield FaidaItem (
-            date = current_fund_data[0].strip() if current_fund_data[0] else None,
+            fund_date = current_fund_data[0].strip() if current_fund_data[0] else None,
+            fund_name = "Faida Fund",
             net_asset_value_tzs = float(current_fund_data[1].strip().replace(",", "") if current_fund_data[1] else None),
             outstanding_number_of_units = float(current_fund_data[2].strip().replace(",", "") if current_fund_data[2] else None),
             nav_per_unit_tzs = float(current_fund_data[3].strip().replace(",", "") if current_fund_data[3] else None),

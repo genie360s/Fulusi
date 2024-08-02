@@ -75,7 +75,8 @@ class TcbItem(scrapy.Item):
     selling_price = scrapy.Field()
 
 class FaidaItem(scrapy.Item):
-    date = scrapy.Field()
+    fund_name = scrapy.Field()
+    fund_date = scrapy.Field()
     net_asset_value_tzs = scrapy.Field()
     outstanding_number_of_units = scrapy.Field()
     nav_per_unit_tzs = scrapy.Field()
