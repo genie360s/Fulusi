@@ -1,0 +1,56 @@
+{% extends 'dash.html'%}
+{% block title%} Dashboard | Bonds {% endblock %}
+{% block content %}
+
+<div class="row d-flex justify-content-center  mx-3">
+    <div class="col col-11 mb-2 ">
+        <form method="POST">
+        <div class="row">
+            
+                <div class="col-8  ml-4">
+                    <select class="form-select" aria-label="select bond type" name="bond_type">
+                        <option selected>Choose bond type | Chagua aina ya bondi</option>
+                        <option value="government_bonds">Government Bonds ( Bondi za Serikali )</option>
+                        <option value="corporate_bonds">Corporate Bonds ( Bondi za Kampuni Binafsi ) </option>
+                      </select>
+                </div>
+            <div class="col-4 ">
+                <button type="submit" class="btn btn-primary w-100">Search | Tafuta <i class="bi bi-search"></i> </button>
+            </div>
+            
+        </div>
+    </form>
+    </div>
+</div>
+<div class="row d-flex justify-content-center  mx-4 mt-5">
+    <div class="col col-11  mb-2 rounded shadow-sm border border-tertiary-secondary">
+   
+        <table class="table table-striped table-bordered mt-4">
+            <caption>Live Bond data</caption>
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Issuer</th>
+                    <th scope="col">Coupon Rate (%)</th>
+                    <th scope="col">Issued Amount (Tsh)</th>
+                    <th scope="col">Issued Date</th>
+                    <th scope="col">Maturity Date</th>
+                    <th scope="col">Term (Years)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bond in bond_data %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ bond.issuer }}</td>
+                    <td>{{ bond.coupon_rate }}</td>
+                    <td>{{ bond.issued_amount }}</td>
+                    <td>{{ bond.issued_date }}</td>
+                    <td>{{ bond.maturity_date }}</td>
+                    <td>{{ bond.term_years }} years</td>
+                </tr>
+                {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}
