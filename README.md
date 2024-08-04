@@ -1,6 +1,6 @@
-## About FinDaily 📈
+## About Fulusi 📈
 
-Findaily is a project that aims to build financial awareness on the Tanzania Finance Market with focus on Bank Forex Exchange rates , Stock Markets ( Dar es Salaam Stock Market ) and Government Mutual Funds ( UTT AMIS ). Ideally an information platform that provides live data , shows trend on the growth of foreign currencies , stocks and mutual funds to help Tanzanian citizens to invest.
+Fulusi is a project that aims to build financial awareness on the Tanzania Finance Market with focus on Bank Forex Exchange rates , Stock Markets ( Dar es Salaam Stock Market ), Government Mutual Funds ( UTT AMIS ), Watumishi Housing Fund , Government Bonds and Corporate Bonds. Ideally an information platform that provides live data , shows trend on the growth of foreign currencies , stocks and mutual funds to help Tanzanian citizens to invest.
 
 ## The Why 🤔💭?
 
