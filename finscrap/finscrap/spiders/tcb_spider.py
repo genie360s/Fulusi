@@ -34,7 +34,7 @@ class TcbSpider(scrapy.Spider):
 
                 for curreny_name, buying_price, selling_price in zip(exchange_rate_currencies, buying_prices, selling_prices):
                     yield TcbItem (
-                        currency = curreny_name.strip() if curreny_name else None,
+                        currency = curreny_name[2:].strip() if curreny_name else None,
                         buying_price = float(buying_price) if buying_price else None,
                         selling_price = float(selling_price) if selling_price else None
                     )

@@ -14,7 +14,7 @@ class DcbSpider(scrapy.Spider):
             selling_rate = int(rates[0].strip().replace(",", ""))
             buying_rate = int(rates[1].strip().replace(",", ""))
             yield DcbItem (
-                currency = currency_names.pop(0).strip() if currency_names else None,
+                currency = currency_names.pop(0).strip().replace(":","") if currency_names else None,
                 buying_price = float(buying_rate),
                 selling_price = float(selling_rate),
             )
