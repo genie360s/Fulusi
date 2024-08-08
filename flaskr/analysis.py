@@ -60,3 +60,44 @@ def collect_bank_forex_rates():
     
     return bank_forex_df
 
+import json
+
+def check_for_best_selling_and_buying_price():
+    bank_forex_df = collect_bank_forex_rates()
+    bank_forex_df_filled = bank_forex_df.fillna(0)
+    
+    # Convert all columns except the first to float
+    bank_forex_df_filled.iloc[:, 1:] = bank_forex_df_filled.iloc[:, 1:].astype(float)
+
+    # Identify columns related to buying and selling prices
+    buying_columns = [col for col in bank_forex_df_filled.columns if col.startswith("buying_price")]
+    selling_columns = [col for col in bank_forex_df_filled.columns if col.startswith("selling_price")]
+
+    # Find the bank with the highest buying rate for each currency
+    banks_with_best_buying_price = bank_forex_df_filled[buying_columns].idxmax()
+    highest_buying_values = bank_forex_df_filled[buying_columns].max()
+
+    # Find the bank with the lowest selling rate for each currency, excluding zeros
+    lowest_selling_values = bank_forex_df_filled[selling_columns].apply(lambda x: x[x > 0].min())
+    banks_with_best_selling_price = bank_forex_df_filled[selling_columns].apply(lambda x: x[x > 0].idxmin())
+
+    # Compile the results into a summary DataFrame
+    summary = pd.DataFrame({
+        "Currency": banks_with_best_buying_price.index.str.replace("buying_price_in_", "").str.replace("selling_price_in_", ""),
+        "Best_Buying_Price": highest_buying_values.values,
+        "Bank_With_Best_Buying_Price": banks_with_best_buying_price.values,
+        "Best_Selling_Price": lowest_selling_values.values,
+        "Bank_With_Best_Selling_Price": banks_with_best_selling_price.values
+    })
+
+    # Convert the DataFrame to a list of dictionaries
+    summary_json = summary.to_dict(orient="records")
+
+    # Convert the list of dictionaries to a JSON string
+    summary_json_output = json.dumps(summary_json, indent=4)
+
+    # Display the JSON output
+    print("\nSummary JSON Output:")
+    print(summary_json_output)
+    
+    return summary_json_output
