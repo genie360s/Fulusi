@@ -2,6 +2,7 @@
 import os
 from flask import Flask, jsonify, request
 import psycopg
+import analysis
 
 
 app = Flask(__name__)
@@ -629,6 +630,16 @@ def get_uttamis_fund_latest_valuation():
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)})
+    
+#best banks forex rates api
+@app.route('/api/v1/best_banks_forex_rates', methods=['GET'])
+def get_best_bank_forex_rates():
+    return analysis.check_for_best_selling_and_buying_prices()
+
+#summary of bank forex rates api
+@app.route('/api/v1/summary_bank_forex_rates', methods=['GET'])
+def get_summary_bank_forex_rates():
+    return analysis.get_forex_rates_in_summary()
 
 if __name__ == '__main__':
     app.run(debug=True)
