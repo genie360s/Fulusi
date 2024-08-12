@@ -154,3 +154,39 @@ def bonds():
         
         flash(error)
     return render_template('dashboard/bonds.html')
+
+@bp.route('/best_banks_forex_rates_tz', methods=('GET', 'POST'))
+@login_required
+def best_banks_forex_rates_tz():
+    try:
+        response = requests.get(os.getenv("BEST_BANKS_FOREX_RATES_TZ_API_URL"), timeout=10)
+        if response.status_code == 200:
+            best_banks_forex_rates = response.json()
+            print(best_banks_forex_rates)
+            return render_template('dashboard/best_banks_forex_rates.html', best_banks_forex_rates=best_banks_forex_rates)
+        else:
+            return render_template('error.html', message=f"Error fetching data: {response.status_code}")
+    except Timeout:
+        return render_template('error.html', message="API request timed out. Please try again later.")
+    except Exception as e:
+        return render_template('error.html', message=f"Failed to fetch data from the API: {str(e)}")
+    
+    return render_template('dashboard/best_banks_forex_rates.html')
+
+@bp.route('/best_banks_forex_rates_summary', methods=('GET', 'POST'))
+@login_required
+def banks_summary_forex_rates_tz():
+    try:
+        response = requests.get(os.getenv("BEST_BANKS_FOREX_RATES_SUMMARY_TZ_API_URL"), timeout=10)
+        if response.status_code == 200:
+            summary_best_rates = response.json()
+            print(summary_best_rates)
+            return render_template('dashboard/forex_rates_summary.html', summary_best_rates=summary_best_rates)
+        else:
+            return render_template('error.html', message=f"Error fetching data: {response.status_code}")
+    except Timeout:
+        return render_template('error.html', message="API request timed out. Please try again later.")
+    except Exception as e:
+        return render_template('error.html', message=f"Failed to fetch data from the API: {str(e)}")
+    
+    return render_template('dashboard/forex_rates_summary.html')
