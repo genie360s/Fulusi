@@ -12,12 +12,22 @@ runs:
       run: |
         if [ "${{ inputs.event-type }}" == "issues" ]; then
           if [ "${{ github.event.action }}" == "opened" ]; then
-            echo "Thanks for opening the issue, @${{ github.actor }}! We appreciate your contribution! 😊"
+            MESSAGE="Thanks for opening the issue, @${{ github.actor }}! We appreciate your contribution! 😊"
           elif [ "${{ github.event.action }}" == "closed" ]; then
-            echo "Thanks for closing the issue, @${{ github.actor }}! Your contribution is valued! 👏"
+            MESSAGE="Thanks for closing the issue, @${{ github.actor }}! Your contribution is valued! 👏"
           fi
         elif [ "${{ inputs.event-type }}" == "pull_request" ]; then
           if [ "${{ github.event.action }}" == "opened" ]; then
-            echo "Thanks for issuing the pull request, @${{ github.actor }}! We will review it soon. 🕵️‍♂️ If it's good, it will be merged; if not, we'll ask for some changes. 🛠️"
+            MESSAGE="Thanks for issuing the pull request, @${{ github.actor }}! We will review it soon. 🕵️‍♂️ If it's good, it will be merged; if not, we'll ask for some changes. 🛠️"
           fi
+        fi
+
+        # Post the message as a comment
+        if [ -n "$MESSAGE" ]; then
+          COMMENT_URL=$(jq -r ".${{ inputs.event-type }}.comments_url" "$GITHUB_EVENT_PATH")
+          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+               -H "Content-Type: application/json" \
+               -X POST \
+               -d "{\"body\": \"$MESSAGE\"}" \
+               "$COMMENT_URL"
         fi

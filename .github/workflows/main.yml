@@ -1,5 +1,9 @@
 name: 'Thank You Workflow'
 
+permissions:
+  contents: write
+  pull-requests: write
+
 on:
   issues:
     types: [opened, closed]
