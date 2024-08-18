@@ -25,7 +25,7 @@ runs:
         # Post the message as a comment
         if [ -n "$MESSAGE" ]; then
           COMMENT_URL=$(jq -r ".${{ inputs.event-type }}.comments_url" "$GITHUB_EVENT_PATH")
-          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          curl -s -H "Authorization: token ${{ secrets.AUTHORS_TOKEN }}" \
                -H "Content-Type: application/json" \
                -X POST \
                -d "{\"body\": \"$MESSAGE\"}" \
