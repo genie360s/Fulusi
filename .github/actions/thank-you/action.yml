@@ -10,13 +10,13 @@ runs:
     - name: 'Send Thank You Message'
       shell: bash
       run: |
-        if [ "${{ github.event_name }}" == "issues" ]; then
+        if [ "${{ inputs.event-type }}" == "issues" ]; then
           if [ "${{ github.event.action }}" == "opened" ]; then
             echo "Thanks for opening the issue, @${{ github.actor }}! We appreciate your contribution! 😊"
           elif [ "${{ github.event.action }}" == "closed" ]; then
             echo "Thanks for closing the issue, @${{ github.actor }}! Your contribution is valued! 👏"
           fi
-        elif [ "${{ github.event_name }}" == "pull_request" ]; then
+        elif [ "${{ inputs.event-type }}" == "pull_request" ]; then
           if [ "${{ github.event.action }}" == "opened" ]; then
             echo "Thanks for issuing the pull request, @${{ github.actor }}! We will review it soon. 🕵️‍♂️ If it's good, it will be merged; if not, we'll ask for some changes. 🛠️"
           fi
