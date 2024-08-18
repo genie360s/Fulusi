@@ -5,14 +5,10 @@ inputs:
     description: 'Type of event that triggered the action'
     required: true
 runs:
-  using: 'node'
+  using: 'composite'
   steps:
-    - name: 'Set up Node.js'
-      uses: actions/setup-node@v3
-      with:
-        node-version: 'latest'
-      
     - name: 'Send Thank You Message'
+      shell: bash
       run: |
         if [ "${{ github.event_name }}" == "issues" ]; then
           if [ "${{ github.event.action }}" == "opened" ]; then
