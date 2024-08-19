@@ -14,24 +14,39 @@ runs:
     - name: 'Send Thank You Message'
       shell: bash
       run: |
+        echo "Event Type: ${{ inputs.event-type }}"
+        echo "GitHub Event Name: ${{ github.event_name }}"
+        echo "GitHub Event Action: ${{ github.event.action }}"
+
         if [ "${{ inputs.event-type }}" == "issues" ]; then
           if [ "${{ github.event.action }}" == "opened" ]; then
             MESSAGE="Thanks for opening the issue, @${{ github.actor }}! We appreciate your contribution! 😊"
           elif [ "${{ github.event.action }}" == "closed" ]; then
             MESSAGE="Thanks for closing the issue, @${{ github.actor }}! Your contribution is valued! 👏"
+          else
+            echo "No matching action for issues."
           fi
         elif [ "${{ inputs.event-type }}" == "pull_request" ]; then
           if [ "${{ github.event.action }}" == "opened" ]; then
             MESSAGE="Thanks for issuing the pull request, @${{ github.actor }}! We will review it soon. 🕵️‍♂️ If it's good, it will be merged; if not, we'll ask for some changes. 🛠️"
+          else
+            echo "No matching action for pull_request."
           fi
+        else
+          echo "Unsupported event type: ${{ inputs.event-type }}"
         fi
 
-        # Post the message as a comment
         if [ -n "$MESSAGE" ]; then
           COMMENT_URL=$(jq -r ".${{ inputs.event-type }}.comments_url" "$GITHUB_EVENT_PATH")
+          echo "Comment URL: $COMMENT_URL"
           curl -s -H "Authorization: token ${{ inputs.github-token }}" \
                -H "Content-Type: application/json" \
                -X POST \
                -d "{\"body\": \"$MESSAGE\"}" \
-               "$COMMENT_URL"
+               "$COMMENT_URL" || {
+            echo "Failed to post the comment.";
+            exit 6;
+          }
+        else
+          echo "No message to post."
         fi
