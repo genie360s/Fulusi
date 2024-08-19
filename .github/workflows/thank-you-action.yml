@@ -1,0 +1,39 @@
+name: Thank You Bot
+
+on:
+  issues:
+    types: [opened, closed]
+  pull_request:
+    types: [opened]
+
+jobs:
+  send-thank-you:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send Thank You Message for Issues
+      if: github.event_name == 'issues' && github.event.action == 'opened'
+      run: |
+        curl -X POST \
+        -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+        -H "Content-Type: application/json" \
+        -d '{"body":"Thank you for opening this issue!"}' \
+        "${{ github.event.issue.url }}/comments"
+
+    - name: Send Thank You Message for Pull Requests
+      if: github.event_name == 'pull_request' && github.event.action == 'opened'
+      run: |
+        curl -X POST \
+        -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+        -H "Content-Type: application/json" \
+        -d '{"body":"Thank you for opening this pull request!"}' \
+        "${{ github.event.pull_request.url }}/comments"
+
+    - name: Send Thank You Message for Closing Issues
+      if: github.event_name == 'issues' && github.event.action == 'closed'
+      run: |
+        curl -X POST \
+        -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+        -H "Content-Type: application/json" \
+        -d '{"body":"Thank you for resolving this issue!"}' \
+        "${{ github.event.issue.url }}/comments"
