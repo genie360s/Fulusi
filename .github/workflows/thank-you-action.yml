@@ -15,7 +15,7 @@ jobs:
       if: github.event_name == 'issues' && github.event.action == 'opened'
       run: |
         curl -X POST \
-        -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+        -H "Authorization: token ${{ secrets.MY_TOKEN }}" \
         -H "Content-Type: application/json" \
         -d '{"body":"Thank you for opening this issue!"}' \
         "${{ github.event.issue.url }}/comments"
@@ -24,7 +24,7 @@ jobs:
       if: github.event_name == 'pull_request' && github.event.action == 'opened'
       run: |
         curl -X POST \
-        -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+        -H "Authorization: token ${{ secrets.MY_TOKEN }}" \
         -H "Content-Type: application/json" \
         -d '{"body":"Thank you for opening this pull request!"}' \
         "${{ github.event.pull_request.url }}/comments"
@@ -33,7 +33,7 @@ jobs:
       if: github.event_name == 'issues' && github.event.action == 'closed'
       run: |
         curl -X POST \
-        -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+        -H "Authorization: token ${{ secrets.MY_TOKEN }}" \
         -H "Content-Type: application/json" \
         -d '{"body":"Thank you for resolving this issue!"}' \
         "${{ github.event.issue.url }}/comments"
