@@ -76,25 +76,31 @@ pip install -r requirements.txt
 flask --app flaskr init-db
 ```
 
-11. Run the Flask development server, with debug option and port option
+11. Create a ```.env``` file and copy contents from ```example.env``` file and edit with respect to your variables
+
+```bash
+touch .env && cp example.env .env
+```
+
+12. Run the Flask development server, with debug option and port option
 
 ```bash
 flask --app flaskr run --debug --port 8070
 ```
 
-12. Navigate to the "/api/" directory
+13. Navigate to the "/api/" directory
 
 ```bash
 cd api
 ```
 
-13. Run the API server
+14. Run the API server
 
 ``` bash
 python3 api.py
 ```
 
-14. Hooray 🚀 ! Now the Project is ready and running
+15. Hooray 🚀 ! Now the Project is ready and running
 
 ## How I contribute ?
 
