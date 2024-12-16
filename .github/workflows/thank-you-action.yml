@@ -1,39 +1,19 @@
-name: Thank You Bot
-
+name: Add comment
 on:
   issues:
-    types: [opened, closed]
-  pull_request:
-    types: [opened]
-
+    types:
+      - opened
 jobs:
-  send-thank-you:
+  add-comment:
     runs-on: ubuntu-latest
-
+    permissions:
+      issues: write
     steps:
-    - name: Send Thank You Message for Issues
-      if: github.event_name == 'issues' && github.event.action == 'opened'
-      run: |
-        curl -X POST \
-        -H "Authorization: token ${{ secrets.MY_TOKEN }}" \
-        -H "Content-Type: application/json" \
-        -d '{"body":"Thank you for opening this issue!"}' \
-        "${{ github.event.issue.url }}/comments"
-
-    - name: Send Thank You Message for Pull Requests
-      if: github.event_name == 'pull_request' && github.event.action == 'opened'
-      run: |
-        curl -X POST \
-        -H "Authorization: token ${{ secrets.MY_TOKEN }}" \
-        -H "Content-Type: application/json" \
-        -d '{"body":"Thank you for opening this pull request!"}' \
-        "${{ github.event.pull_request.url }}/comments"
-
-    - name: Send Thank You Message for Closing Issues
-      if: github.event_name == 'issues' && github.event.action == 'closed'
-      run: |
-        curl -X POST \
-        -H "Authorization: token ${{ secrets.MY_TOKEN }}" \
-        -H "Content-Type: application/json" \
-        -d '{"body":"Thank you for resolving this issue!"}' \
-        "${{ github.event.issue.url }}/comments"
+      - name: Add comment
+        run: gh issue comment "$NUMBER" --body "$BODY"
+        env:
+          GH_TOKEN: ${{ secrets.THE_OCTO_SECRET }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.issue.number }}
+          BODY: >
+              Thank you for raising an issue!  🎉
