@@ -41,9 +41,6 @@ def create_app(test_config=None):
     from . import dashboard
     app.register_blueprint(dashboard.bp)
 
-    #Import and register the api blueprint
-    from . import api
-    app.register_blueprint(api.bp)
 
     
     return app
