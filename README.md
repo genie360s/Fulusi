@@ -6,6 +6,8 @@ Fulusi is a project that aims to build financial awareness on the Tanzania Finan
 
 According to the recent Tanzania CENSUS survey , 1% of Tanzanians invest in the stock market compared to 4% in Kenya , the rate is similar in other investment instruments including bonds , mutual funds and foreign exchanges. I believe with this platfom citizens can get live data and monitor how different instruments perform and invest. 
 
+Source : _[Individual Investors' Awareness and Participation in the Dar es Salaam Stock Exchange, Tanzania](https://www.researchgate.net/publication/369708322_Individual_Investors'_Awareness_and_Participation_in_the_Dar_es_Salaam_Stock_Exchange_Tanzania#:~:text=Participation%20of%20individual%20investors%20in,which%20is%20currently%20at%204%25.)_
+
 ## The Roadmap 🛣️
 - [x] Collecting Live Data
 - [x] Building the UI and UX of the platform
